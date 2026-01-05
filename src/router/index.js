@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import Home from "../views/Home.vue"
 import EditArticle from "../views/EditArticle.vue"
 import Login from "../views/Login.vue"
+import NewArticle from "../views/NewArticle.vue"
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
   {
     path: "/login",
     component: Login,
+  },
+  {
+    path:"/article/new",
+    component:NewArticle,
+    meta: { requiresAuth: true }
   }
 ]
 const router = createRouter({

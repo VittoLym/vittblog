@@ -1,15 +1,20 @@
 <script setup>
-import { ref, onMounted,onBeforeMount } from "vue"
+import { ref, onMounted,computed } from "vue"
 import ArticleCard from "../components/ArticlesCard.vue"
 import { useRoute, useRouter } from "vue-router"
 
-const route = useRoute()
 const router = useRouter()
 
 const articles = ref([])
 const loading = ref(true)
 const error = ref(null)
+const isAdmin = computed(() => {
+  return !!localStorage.getItem("token")
+})
 
+function goNew() {
+  router.push("/article/new")
+}
 onMounted(async () => {
   try {
     const res = await fetch("https://vittblog-backend.onrender.com/articles")
@@ -37,10 +42,19 @@ async function deleteArticle(id) {
 }
 
 </script>
-
 <template>
   <section class="container">
-    <h1 class="title">📝 Mi Blog</h1>
+    <header class="header">
+      <h1 class="title">📝 Mi Blog</h1>
+
+      <button
+        v-if="isAdmin"
+        class="new"
+        @click="goNew"
+      >
+        + Nuevo artículo
+      </button>
+    </header>
 
     <p v-if="loading" class="status">Cargando artículos...</p>
 
@@ -49,16 +63,20 @@ async function deleteArticle(id) {
     <div v-else-if="articles.length === 0" class="empty">
       <h2>📭 No hay artículos todavía</h2>
       <p>Estoy escribiendo algo bueno…</p>
+
+      <button v-if="isAdmin" class="new big" @click="goNew">
+        Crear primer artículo
+      </button>
     </div>
 
     <div v-else class="grid">
-        <ArticleCard
-            v-for="article in articles"
-            :key="article.id"
-            :article="article"
-            @edit="editArticle"
-            @delete="deleteArticle"
-        />
+      <ArticleCard
+        v-for="article in articles"
+        :key="article.id"
+        :article="article"
+        @edit="editArticle"
+        @delete="deleteArticle"
+      />
     </div>
   </section>
 </template>
@@ -93,4 +111,27 @@ async function deleteArticle(id) {
   margin-top: 4rem;
   opacity: 0.8;
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new {
+  background: linear-gradient(135deg, #7aa2ff, #5f8dff);
+  border: none;
+  padding: .6rem 1.1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.new.big {
+  margin-top: 1.5rem;
+}
+
+.new:hover {
+  opacity: .9;
+}
+
 </style>
