@@ -1,6 +1,10 @@
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted,onBeforeMount } from "vue"
 import ArticleCard from "../components/ArticlesCard.vue"
+import { useRoute, useRouter } from "vue-router"
+
+const route = useRoute()
+const router = useRouter()
 
 const articles = ref([])
 const loading = ref(true)
@@ -17,13 +21,16 @@ onMounted(async () => {
   }
 })
 function editArticle(article) {
-  // redirigir a /admin/edit/:id
-  router.push(`/admin/edit/${article.id}`)
+  router.push(`/article/edit/${article.id}`)
 }
 
 async function deleteArticle(id) {
+  const token = localStorage.getItem("token")
   await fetch(`https://vittblog-backend.onrender.com/articles/${id}`, {
-    method: "DELETE"
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
   })
 
   articles.value = articles.value.filter(a => a.id !== id)
