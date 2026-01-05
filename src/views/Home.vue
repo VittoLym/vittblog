@@ -11,7 +11,6 @@ const error = ref(null)
 const isAdmin = computed(() => {
   return !!localStorage.getItem("token")
 })
-
 function goNew() {
   router.push("/article/new")
 }

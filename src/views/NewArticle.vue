@@ -18,13 +18,6 @@ async function submit() {
   }
 
   loading.value = true
-
-  console.log({
-    title: title.value,
-    content: content.value,
-    date: date.value
-  })
-
   saveArticle()
   setTimeout(() => {
     loading.value = false
