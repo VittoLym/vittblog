@@ -33,6 +33,7 @@ onMounted(async () => {
 })
 
 async function save() {
+    const token = localStorage.getItem("token")
     if (!token && router.currentRoute.value.meta.requiresAuth) {
       router.push("/login")
     }
