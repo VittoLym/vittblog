@@ -9,7 +9,7 @@ const router = useRouter()
 
 async function login() {
   try {
-    const res = await fetch("https:vittblog-backend.onrender.com/auth/login", {
+    const res = await fetch("https://vittblog-backend.onrender.com/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
