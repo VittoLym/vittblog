@@ -16,7 +16,12 @@ function onDelete() {
   <article class="card">
     <!-- Header -->
     <header class="header">
-      <h2 class="title">{{ article.title }}</h2>
+      <div>
+        <h2 class="title">{{ article.title }}</h2>
+        <span class="owner">
+          ✍️ {{ article.owner_name }}
+        </span>
+      </div>
 
       <div class="actions">
         <button class="icon edit" @click="emit('edit', article)">
@@ -40,7 +45,14 @@ function onDelete() {
   </article>
 </template>
 
+
 <style scoped>
+  .owner {
+  display: block;
+  margin-top: .2rem;
+  font-size: .75rem;
+  opacity: .65;
+}
 .card {
   background: linear-gradient(180deg, #15151b, #101015);
   border-radius: 18px;

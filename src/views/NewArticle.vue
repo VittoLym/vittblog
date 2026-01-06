@@ -1,13 +1,25 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router"
+import { useHead } from "@vueuse/head"
 
 const title = ref("")
 const content = ref("")
 const date = ref("")
+const owner = ref("")
 const loading = ref(false)
 const error = ref("")
 const router = useRouter()
+
+useHead({
+  title:  "Nuevo | Vitt Blog",
+  meta: [
+    {
+      name: "description",
+      content: "no info yet"
+    }
+  ]
+})
 
 async function submit() {
   error.value = ""
@@ -30,7 +42,8 @@ async function saveArticle(){
     if (!token && router.currentRoute.value.meta.requiresAuth) {
         router.push("/login")
     }
-    const res = await fetch("https://vittblog-backend.onrender.com/articles",{
+    owner.value = localStorage.getItem("user")
+    const res = await fetch("`https://vittblog-backend.onrender.com/articles",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,9 +52,11 @@ async function saveArticle(){
       body: JSON.stringify({
         title: title.value,
         content: content.value,
-        date: date.value.toString()
+        date: date.value.toString(),
+        owner: owner.value
       })
     })
+    console.log(res)
 }
 </script>
 

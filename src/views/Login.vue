@@ -25,6 +25,7 @@ async function login() {
     }
 
     localStorage.setItem("token", data.token)
+    localStorage.setItem("user",username.value)
     router.push("/")
   } catch {
     error.value = "Server error"
@@ -34,12 +35,12 @@ async function login() {
 <template>
   <div class="login-page">
     <form class="login-card" @submit.prevent="login">
-      <h1>Admin Login</h1>
+      <h1>Login</h1>
       <p class="subtitle">Acceso privado</p>
 
       <div class="field">
         <label>Usuario</label>
-        <input v-model="username" placeholder="admin" />
+        <input v-model="username" placeholder="Usuario" />
       </div>
 
       <div class="field">

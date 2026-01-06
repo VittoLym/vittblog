@@ -18,6 +18,7 @@ onMounted(async () => {
   try {
     const res = await fetch("https://vittblog-backend.onrender.com/articles")
     articles.value = await res.json()
+    console.log(articles.value)
   } catch (err) {
     error.value = "Error cargando artículos"
   } finally {
