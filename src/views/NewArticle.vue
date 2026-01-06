@@ -43,7 +43,7 @@ async function saveArticle(){
         router.push("/login")
     }
     owner.value = localStorage.getItem("user")
-    const res = await fetch("`https://vittblog-backend.onrender.com/articles",{
+    const res = await fetch("https://vittblog-backend.onrender.com/articles",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
