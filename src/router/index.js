@@ -7,8 +7,7 @@ import NewArticle from "../views/NewArticle.vue"
 const routes = [
   {
     path: "/",
-    component: Home,
-    meta: { requiresAuth: true }
+    component: Home
   },{
     path: "/article/edit/:id",
     component: EditArticle,

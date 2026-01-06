@@ -1,7 +1,8 @@
 <script setup>
   import { onMounted} from "vue"
-  import { useRouter } from "vue-router"
+  import { useRouter,useRoute } from "vue-router"
 
+  const route = useRoute()
   const router = useRouter()
 
   onMounted(() => {
@@ -18,8 +19,17 @@
       <div class="header-inner">
         <h1 class="logo">vitt<span>.</span></h1>
 
-        <nav class="nav">
-          <RouterLink to="/" active-class="active">Inicio</RouterLink>
+        <nav class="nav" v-if="route.path !== '/login'">
+          <RouterLink to="/login" active-class="active">
+            Login
+          </RouterLink>
+        </nav>
+        <nav class="nav" v-else-if="route.path !== '/'">
+          <RouterLink to="/" active-class="active">
+            Home
+          </RouterLink>
+        </nav>
+        <nav class="nav" v-else>
         </nav>
       </div>
     </header>
@@ -95,7 +105,7 @@ body {
 
 /* ===== Nav ===== */
 .nav a {
-  color: var(--muted);
+  color: var(--accent);
   text-decoration: none;
   font-size: 0.95rem;
   margin-left: 1.5rem;

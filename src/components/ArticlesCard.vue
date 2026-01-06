@@ -1,8 +1,12 @@
 <script setup>
+import { computed } from 'vue';
 const props = defineProps({
   article: Object
 })
 
+const isAdmin = computed(() => {
+  return !!localStorage.getItem("token")
+})
 const emit = defineEmits(["edit", "delete"])
 
 function onDelete() {
@@ -23,7 +27,7 @@ function onDelete() {
         </span>
       </div>
 
-      <div class="actions">
+      <div class="actions" v-if="isAdmin">
         <button class="icon edit" @click="emit('edit', article)">
           ✏️
         </button>
