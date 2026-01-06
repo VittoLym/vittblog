@@ -1,16 +1,15 @@
 <script setup>
-  import { onMounted} from "vue"
+  import { onMounted, computed} from "vue"
   import { useRouter,useRoute } from "vue-router"
+  import { isLogged, logout } from "../src/stores/auth.js"
 
   const route = useRoute()
   const router = useRouter()
+  function onLogout() {
+    logout()
+    router.push("/login")
+  }
 
-  onMounted(() => {
-    const token = localStorage.getItem("token")
-    if (!token && router.currentRoute.value.meta.requiresAuth) {
-      router.push("/login")
-    }
-  })
 </script>
 
 <template>
@@ -18,18 +17,28 @@
     <header class="header">
       <div class="header-inner">
         <h1 class="logo">vitt<span>.</span></h1>
-
         <nav class="nav" v-if="route.path !== '/login'">
-          <RouterLink to="/login" active-class="active">
-            Login
+          <button
+            v-if="isLogged"
+            class="logout"
+            @click="onLogout"
+          >
+            Logout
+          </button>
+          <RouterLink
+            v-if="!isLogged"
+            to="/login"
+            class="link"
+            active-class="active"
+          >
+            Login 
           </RouterLink>
         </nav>
-        <nav class="nav" v-else-if="route.path !== '/'">
-          <RouterLink to="/" active-class="active">
+
+        <nav class="nav" v-else-if="route.path !== '/' && !isLogged">
+          <RouterLink to="/" class="link" active-class="active">
             Home
           </RouterLink>
-        </nav>
-        <nav class="nav" v-else>
         </nav>
       </div>
     </header>
@@ -108,7 +117,6 @@ body {
   color: var(--accent);
   text-decoration: none;
   font-size: 0.95rem;
-  margin-left: 1.5rem;
   transition: color 0.2s ease;
 }
 
@@ -138,4 +146,53 @@ body {
 .footer span {
   opacity: 0.6;
 }
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: .75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  transition: all ease .3s;
+}
+
+.link {
+  text-decoration: none;
+  color: #ccc;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: .4rem .9rem;
+  border-radius: 10px;
+  transition: all .2s ease;
+}
+
+.nav:has(.link:hover) {
+  color: #fff;
+  background: rgba(255,255,255,.08);
+}
+
+.link.active {
+  color: #7aa2ff;
+  background: rgba(122,162,255,.15);
+}
+
+.logout {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  font-size: .9rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: .4rem .9rem;
+  border-radius: 10px;
+  transition: all .2s ease;
+}
+
+.nav:has(.logout:hover) {
+  background: rgba(255,107,107,.15);
+  color: #ff8b8b;
+}
+
 </style>

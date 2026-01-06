@@ -1,13 +1,14 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router"
+import { login } from "../stores/auth"
 
 const username = ref("")
 const password = ref("")
 const error = ref("")
 const router = useRouter()
 
-async function login() {
+async function onLogin() {
   try {
     const res = await fetch("https://vittblog-backend.onrender.com/auth/login", {
       method: "POST",
@@ -24,7 +25,7 @@ async function login() {
       return
     }
 
-    localStorage.setItem("token", data.token)
+    login(data.token)
     localStorage.setItem("user",username.value)
     router.push("/")
   } catch {
@@ -34,7 +35,7 @@ async function login() {
 </script>
 <template>
   <div class="login-page">
-    <form class="login-card" @submit.prevent="login">
+    <form class="login-card" @submit.prevent="onLogin">
       <h1>Login</h1>
       <p class="subtitle">Acceso privado</p>
 
