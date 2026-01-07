@@ -31,7 +31,7 @@ function editArticle(article) {
 
 async function deleteArticle(id) {
   const token = localStorage.getItem("token")
-  const res = await fetch(`http://localhost:3005/articles/${id}`, {
+  const res = await fetch(`https://vittblog-backend-1.onrender.com/articles/${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Bearer ${token}`
