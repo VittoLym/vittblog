@@ -16,11 +16,11 @@ const error = ref(null)
 onMounted(async () => {
   try {
     const res = await fetch(
-      `https://vittblog-backend.onrender.com/articles/${id}`
+      `https://vittblog-backend-1.onrender.com/articles/${id}`
     )
 
     if (!res.ok) throw new Error("Artículo no encontrado")
-
+    console.log(res)
     const article = await res.json()
     title.value = article.title
     content.value = article.content
@@ -38,7 +38,7 @@ async function save() {
       router.push("/login")
     }
   const res = await fetch(
-    `https://vittblog-backend.onrender.com/articles/${id}`,
+    `https://vittblog-backend-1.onrender.com/articles/${id}`,
     {
       method: "PUT",
       headers: {

@@ -16,9 +16,8 @@ function goNew() {
 }
 onMounted(async () => {
   try {
-    const res = await fetch("https://vittblog-backend.onrender.com/articles")
+    const res = await fetch("https://vittblog-backend-1.onrender.com/articles")
     articles.value = await res.json()
-    console.log(articles.value)
   } catch (err) {
     error.value = "Error cargando artículos"
   } finally {
@@ -31,7 +30,7 @@ function editArticle(article) {
 
 async function deleteArticle(id) {
   const token = localStorage.getItem("token")
-  await fetch(`https://vittblog-backend.onrender.com/articles/${id}`, {
+  await fetch(`https://vittblog-backend-1.onrender.com/articles/${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Bearer ${token}`
@@ -56,7 +55,11 @@ async function deleteArticle(id) {
       </button>
     </header>
 
-    <p v-if="loading" class="status">Cargando artículos...</p>
+    <div v-if="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Cargando Blogs...</p>
+    </div>
+
 
     <p v-else-if="error" class="status error">{{ error }}</p>
 
@@ -133,5 +136,33 @@ async function deleteArticle(id) {
 .new:hover {
   opacity: .9;
 }
+.loading {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0.8;
+}
 
+.loading p {
+  font-size: 1rem;
+  letter-spacing: .5px;
+}
+
+/* Spinner */
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,.15);
+  border-top-color: #7aa2ff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 </style>

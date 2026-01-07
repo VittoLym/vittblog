@@ -31,10 +31,6 @@ async function submit() {
 
   loading.value = true
   saveArticle()
-  setTimeout(() => {
-    loading.value = false
-    router.push("/")
-  }, 600)
 }
 
 async function saveArticle(){
@@ -43,7 +39,7 @@ async function saveArticle(){
         router.push("/login")
     }
     owner.value = localStorage.getItem("user")
-    const res = await fetch("https://vittblog-backend.onrender.com/articles",{
+    const res = await fetch("https://vittblog-backend-1.onrender.com/articles",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +52,13 @@ async function saveArticle(){
         owner: owner.value
       })
     })
-    console.log(res)
+    if(res.status !== 200){
+      error.value = 'Ha surgido un problema actualizando los datos.'
+    }
+    else{
+      loading.value = false
+      router.push("/")
+    }
 }
 </script>
 
