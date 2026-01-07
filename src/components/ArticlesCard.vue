@@ -1,11 +1,8 @@
 <script setup>
-import { computed,ref,onUpdated  } from 'vue';
+import { computed} from 'vue';
 const props = defineProps({
   article: Object,
   isError: Object
-})
-onUpdated(()=> {
-  console.log(props.isError.value)
 })
 const isAdmin = computed(() => {
   return !!localStorage.getItem("token")

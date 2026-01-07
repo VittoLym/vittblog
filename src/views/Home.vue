@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted,computed } from "vue"
 import ArticleCard from "../components/ArticlesCard.vue"
+import { refresh_token } from "../stores/auth"
 import { useRoute, useRouter } from "vue-router"
 
 const router = useRouter()
@@ -25,6 +26,7 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
 function editArticle(article) {
   router.push(`/article/edit/${article.id}`)
 }
@@ -37,6 +39,9 @@ async function deleteArticle(id) {
       "Authorization": `Bearer ${token}`
     }
   })
+  if(res.staus == 401){
+    refresh_token()
+  }
   if(res.status !== 200){
     isError.value = {
       id: id,

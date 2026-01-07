@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
+import { refresh_token } from "../stores/auth"
 
 const route = useRoute()
 const router = useRouter()
@@ -51,7 +52,9 @@ async function save() {
       })
     }
   )
-
+  if(res.staus == 401){
+    refresh_token()
+  }
   if (res.ok) {
     router.push("/")
   } else {

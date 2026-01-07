@@ -2,6 +2,7 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { useHead } from "@vueuse/head"
+import { refresh_token } from "../stores/auth"
 
 const title = ref("")
 const content = ref("")
@@ -52,6 +53,10 @@ async function saveArticle(){
         owner: owner.value
       })
     })
+    
+  if(res.staus == 401){
+    refresh_token()
+  }
     if(res.status !== 200){
       const data = await res.json()
       if(data?.error == 'Invalid token'){
