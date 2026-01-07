@@ -8,6 +8,7 @@ const router = useRouter()
 const articles = ref([])
 const loading = ref(true)
 const error = ref(null)
+const isError = ref(null)
 const isAdmin = computed(() => {
   return !!localStorage.getItem("token")
 })
@@ -30,13 +31,19 @@ function editArticle(article) {
 
 async function deleteArticle(id) {
   const token = localStorage.getItem("token")
-  await fetch(`https://vittblog-backend-1.onrender.com/articles/${id}`, {
+  const res = await fetch(`http://localhost:3005/articles/${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Bearer ${token}`
     }
   })
-
+  if(res.status !== 200){
+    isError.value = {
+      id: id,
+      message: "No esta autorizado para realizar eso."
+    }
+    return
+  }
   articles.value = articles.value.filter(a => a.id !== id)
 }
 
@@ -77,6 +84,7 @@ async function deleteArticle(id) {
         v-for="article in articles"
         :key="article.id"
         :article="article"
+        :isError="isError"
         @edit="editArticle"
         @delete="deleteArticle"
       />

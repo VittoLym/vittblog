@@ -20,7 +20,6 @@ onMounted(async () => {
     )
 
     if (!res.ok) throw new Error("Artículo no encontrado")
-    console.log(res)
     const article = await res.json()
     title.value = article.title
     content.value = article.content

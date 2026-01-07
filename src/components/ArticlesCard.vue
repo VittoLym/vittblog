@@ -1,9 +1,12 @@
 <script setup>
-import { computed } from 'vue';
+import { computed,ref,onUpdated  } from 'vue';
 const props = defineProps({
-  article: Object
+  article: Object,
+  isError: Object
 })
-
+onUpdated(()=> {
+  console.log(props.isError.value)
+})
 const isAdmin = computed(() => {
   return !!localStorage.getItem("token")
 })
@@ -46,6 +49,7 @@ function onDelete() {
     </p>
 
     <button class="read">Leer más →</button>
+    <p v-if="isError != null && isError.id == article.id" class="status error">{{ isError.message }}</p>
   </article>
 </template>
 
@@ -89,7 +93,13 @@ function onDelete() {
   display: flex;
   gap: .25rem;
 }
+.status {
+  opacity: 0.7;
+}
 
+.error {
+  color: #ff6b6b;
+}
 .icon {
   background: transparent;
   border: none;

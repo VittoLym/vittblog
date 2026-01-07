@@ -53,6 +53,11 @@ async function saveArticle(){
       })
     })
     if(res.status !== 200){
+      const data = await res.json()
+      if(data?.error == 'Invalid token'){
+        error.value = 'Session cerrada. Vuelva a iniciar sesión.'
+        setTimeout(router.push(`/login`),2000)
+      }
       error.value = 'Ha surgido un problema actualizando los datos.'
     }
     else{
