@@ -18,7 +18,7 @@ export async function refresh_token(){
   if(!token){
     return 'No Have Token'
   }
-  const res = await fetch('http://localhost:3005/auth/refresh',{
+  const res = await fetch('https://vittblog-backend-1.onrender.com/auth/refresh',{
     method: "POST",
     body:{
       "username": user
