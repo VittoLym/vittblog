@@ -3,6 +3,7 @@ import Home from "../views/Home.vue"
 import EditArticle from "../views/EditArticle.vue"
 import Login from "../views/Login.vue"
 import NewArticle from "../views/NewArticle.vue"
+import Article from "../views/Article.vue"
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
     path:"/article/new",
     component:NewArticle,
     meta: { requiresAuth: true }
+  },
+  {
+    path:"/article/:id",
+    component: Article,
   }
 ]
 const router = createRouter({

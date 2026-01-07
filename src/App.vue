@@ -1,5 +1,4 @@
 <script setup>
-  import { onMounted, computed} from "vue"
   import { useRouter,useRoute } from "vue-router"
   import { isLogged, logout } from "../src/stores/auth.js"
 
@@ -17,29 +16,30 @@
     <header class="header">
       <div class="header-inner">
         <h1 class="logo">vitt<span>.</span></h1>
-        <nav class="nav" v-if="route.path !== '/login'">
-          <button
-            v-if="isLogged"
-            class="logout"
-            @click="onLogout"
-          >
-            Logout
-          </button>
-          <RouterLink
-            v-if="!isLogged"
-            to="/login"
-            class="link"
-            active-class="active"
-          >
-            Login 
-          </RouterLink>
-        </nav>
-
-        <nav class="nav" v-else-if="route.path !== '/' && !isLogged">
-          <RouterLink to="/" class="link" active-class="active">
-            Home
-          </RouterLink>
-        </nav>
+        <aside class="buttons">
+          <nav class="nav" v-if="route.path !== '/'">
+            <RouterLink to="/" class="link" active-class="active">
+              Home
+            </RouterLink>
+          </nav>
+          <nav class="nav" v-if="route.path !== '/login'">
+            <button
+              v-if="isLogged"
+              class="logout"
+              @click="onLogout"
+            >
+              Logout
+            </button>
+            <RouterLink
+              v-if="!isLogged"
+              to="/login"
+              class="link"
+              active-class="active"
+            >
+              Login 
+            </RouterLink>
+          </nav>
+        </aside>
       </div>
     </header>
 
@@ -78,12 +78,7 @@ body {
   color: var(--text);
 }
 
-/* ===== Layout ===== */
-.layout {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+
 
 /* ===== Header ===== */
 .header {
@@ -91,11 +86,15 @@ body {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #1f1f27;
 }
+.buttons{
+  display: flex;
+  flex-direction: row;
 
+}
 .header-inner {
-  max-width: 1000px;
+  width: 60vw;
   margin: auto;
-  padding: 1.5rem 1.25rem;
+  padding: 1.5rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -156,6 +155,7 @@ body {
   backdrop-filter: blur(8px);
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
   transition: all ease .3s;
+  margin-left: 1rem;
 }
 
 .link {
