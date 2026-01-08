@@ -3,6 +3,7 @@ import { ref, onMounted,computed } from "vue"
 import ArticleCard from "../components/ArticlesCard.vue"
 import { refresh_token } from "../stores/auth"
 import { useRoute, useRouter } from "vue-router"
+import BlogsContainer from "../components/BlogsContainer.vue"
 
 const router = useRouter()
 
@@ -54,10 +55,11 @@ async function deleteArticle(id) {
 
 </script>
 <template>
+  
+  <BlogsContainer/>
   <section class="container">
     <header class="header">
-      <h1 class="title">📝 Vitt Blog</h1>
-
+      <h1 class="title">📝 Vitt<span>.</span> Blog Lista</h1>
       <button
         v-if="isAdmin"
         class="new"
@@ -66,15 +68,11 @@ async function deleteArticle(id) {
         + Nuevo artículo
       </button>
     </header>
-
     <div v-if="loading" class="loading">
       <div class="spinner"></div>
       <p>Cargando Blogs...</p>
     </div>
-
-
     <p v-else-if="error" class="status error">{{ error }}</p>
-
     <div v-else-if="articles.length === 0" class="empty">
       <h2>📭 No hay artículos todavía</h2>
       <p>Estoy escribiendo algo bueno…</p>
@@ -83,7 +81,6 @@ async function deleteArticle(id) {
         Crear primer artículo
       </button>
     </div>
-
     <div v-else class="grid">
       <ArticleCard
         v-for="article in articles"
@@ -99,7 +96,7 @@ async function deleteArticle(id) {
 
 <style scoped>
 .container {
-  max-width: 900px;
+  width: 70dvw;
   margin: auto;
   padding: 2rem 1rem;
 }
@@ -108,11 +105,13 @@ async function deleteArticle(id) {
   font-size: 2.5rem;
   margin-bottom: 2rem;
 }
-
+.title span{
+  color:  #7c8cff;
+}
 .grid {
   display: grid;
   gap: 1.5rem;
-  padding: .5rem 0;
+  padding: 1.5rem 0;
 }
 
 .status {

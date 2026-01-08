@@ -8,6 +8,11 @@
     logout()
     router.push("/login")
   }
+  
+  function goNew() {
+    router.push("/article/new")
+  }
+  
 
 </script>
 
@@ -15,7 +20,10 @@
   <div class="layout">
     <header class="header">
       <div class="header-inner">
-        <h1 class="logo">vitt<span>.</span></h1>
+        <article class="main_header">
+          <img src="./assets/Jotchua.jpg" alt="Vitt.">
+          <h1 class="logo">Vitt<span>.</span>Blog | Desarrollo & Tecnología <br><span>(Y Pensamientos Intrusivos)</span></h1>
+        </article>
         <aside class="buttons">
           <nav class="nav" v-if="route.path !== '/'">
             <RouterLink to="/" class="link" active-class="active">
@@ -39,6 +47,13 @@
               Login 
             </RouterLink>
           </nav>
+          <button
+          v-if="isLogged"
+          class="new"
+          @click="goNew"
+          >
+          + Nuevo Blog
+        </button>
         </aside>
       </div>
     </header>
@@ -86,13 +101,37 @@ body {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #1f1f27;
 }
+.main_header{
+  display: flex;
+  flex-direction: row;
+}
+.main_header img{
+  border-radius: 100%;
+  margin-right: .5rem;
+}
+.new {
+  background: linear-gradient(135deg, #7aa2ff, #5f8dff);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #eaeaf0;
+  margin-left: 1rem;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: .4rem .9rem;
+  transition: all .2s ease;
+}
+
+.new:hover {
+  opacity: .9;
+}
 .buttons{
   display: flex;
   flex-direction: row;
 
 }
 .header-inner {
-  width: 60vw;
+  width: 70vw;
   margin: auto;
   padding: 1.5rem 0;
   display: flex;

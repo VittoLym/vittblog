@@ -74,7 +74,7 @@
 
 .post-header {
   margin-bottom: 3rem;
-  width: 60vw;
+  width: 70vw;
 }
 
 .title {
@@ -89,7 +89,7 @@
   opacity: .7;
 }
 .content{
-  width: 60vw;
+  width: 70vw;
 }
 .content p {
   margin-bottom: 1.4rem;
