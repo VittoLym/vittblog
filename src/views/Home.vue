@@ -56,7 +56,7 @@ async function deleteArticle(id) {
 <template>
   <section class="container">
     <header class="header">
-      <h1 class="title">📝 Mi Blog</h1>
+      <h1 class="title">📝 Vitt Blog</h1>
 
       <button
         v-if="isAdmin"
@@ -112,6 +112,7 @@ async function deleteArticle(id) {
 .grid {
   display: grid;
   gap: 1.5rem;
+  padding: .5rem 0;
 }
 
 .status {

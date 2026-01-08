@@ -77,6 +77,7 @@ function toArticle(){
   display: flex;
   gap: 1.2rem;
   height: 100%;
+  padding: 1.5rem;
 }
 
 /* Imagen */
@@ -124,15 +125,13 @@ function toArticle(){
 .card {
   background: linear-gradient(180deg, #15151b, #101015);
   border-radius: 18px;
-  padding: 1.5rem;
   transition: transform .25s ease;
-  height: 30vh;
+  height: 33vh;
   overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 30px 80px rgba(0,0,0,.6);
 }
 
 /* Header */
@@ -141,6 +140,8 @@ function toArticle(){
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  padding: 0.3rem .5rem ;
+  border-radius: 18px;
 }
 
 .title {
@@ -198,6 +199,7 @@ function toArticle(){
   margin: 0 0 1.5rem;
   line-height: 1.65;
   opacity: .85;
+  padding: 0 .6rem;
 }
 
 /* Read more */
