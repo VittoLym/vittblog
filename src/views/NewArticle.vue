@@ -1,16 +1,23 @@
 <script setup>
-import { ref } from "vue"
+import { ref,computed } from "vue"
 import { useRouter } from "vue-router"
 import { useHead } from "@vueuse/head"
 import { refresh_token } from "../stores/auth"
 
 const title = ref("")
 const content = ref("")
-const date = ref("")
+const image = ref("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80")
+const date = ref(new Date().toISOString())
+const date_format = ref(date.value.split("T")[0])
 const owner = ref("")
 const loading = ref(false)
 const error = ref("")
 const router = useRouter()
+const imageUrl = ref("")
+
+const showPreview = computed(() => {
+  return imageUrl.value && imageUrl.value.startsWith("http")
+})
 
 useHead({
   title:  "Nuevo | Vitt Blog",
@@ -49,8 +56,9 @@ async function saveArticle(){
       body: JSON.stringify({
         title: title.value,
         content: content.value,
-        date: date.value.toString(),
-        owner: owner.value
+        date: date.value,
+        owner: owner.value,
+        image: imageUrl.value
       })
     })
     
@@ -81,12 +89,28 @@ async function saveArticle(){
           Cancelar
         </button>
       </header>
-
       <div class="field">
         <label>Título</label>
         <input v-model="title" placeholder="Título del artículo" />
       </div>
+      
+      <div class="field">
+        <label>Imagen (URL)</label>
+        <input
+          v-model="imageUrl"
+          type="url"
+          placeholder="https://ejemplo.com/imagen.jpg"
+        />
+      </div>
 
+      <div v-if="showPreview" class="preview">
+        <span>Previsualización</span>
+        <img
+          :src="imageUrl"
+          alt="Preview"
+          @error="imageUrl = ''"
+        />
+      </div>
       <div class="field">
         <label>Contenido</label>
         <textarea
@@ -98,7 +122,7 @@ async function saveArticle(){
 
       <div class="field">
         <label>Fecha</label>
-        <input type="date" v-model="date" />
+        <input type="text" v-model="date_format" />
       </div>
 
       <p v-if="error" class="error">{{ error }}</p>
@@ -113,6 +137,27 @@ async function saveArticle(){
 </template>
 
 <style scoped>
+  .preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.preview span {
+  display: block;
+  font-size: .85rem;
+  opacity: .7;
+  margin-bottom: .5rem;
+}
+
+.preview img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 .page {
   min-height: 100vh;
   display: flex;

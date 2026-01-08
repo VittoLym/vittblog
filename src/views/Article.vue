@@ -9,13 +9,12 @@
     const content = ref("")
     const date = ref(null)
     const owner = ref(null)
-    const defaultImage =
-  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80"
+    const defaultImage = ref("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80")
     const backgroundStyle = computed(() => ({
       background: `linear-gradient(
         rgba(0,0,0,0.65),
         rgba(0,0,0,0.85)
-      ), url(${defaultImage})`,
+      ), url(${defaultImage.value})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
     }))
@@ -26,9 +25,11 @@
             )
             if (!res.ok) throw new Error("Artículo no encontrado")
             const article = await res.json()
+          console.log(article.image)
             title.value = article.title
             content.value = article.content
             date.value = article.date
+            defaultImage.value = article.image
         } catch (err) {
             console.log(err)
         }
