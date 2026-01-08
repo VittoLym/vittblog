@@ -65,9 +65,11 @@
   color: #eaeaea;
   line-height: 1.75;
   width: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .post-header {
@@ -97,6 +99,7 @@
 
 .footer {
   width: 100%;
+  padding: 0;
   margin-top: 4rem;
 }
 
@@ -106,11 +109,17 @@
   color: #7aa2ff;
   font-size: .95rem;
   cursor: pointer;
-  padding: 0;
+  padding: 2rem 3rem;
+  transition: all ease .25s;
+  height: 100%;
+  width: 100%;
+
 }
 
 .back:hover {
   text-decoration: underline;
+  background-color: #7aa2ff44;
+  color: #eaeaea;
 }
 .post {
   animation: fade .4s ease;
