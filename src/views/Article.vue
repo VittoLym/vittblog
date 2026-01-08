@@ -25,7 +25,6 @@
             )
             if (!res.ok) throw new Error("Artículo no encontrado")
             const article = await res.json()
-          console.log(article.image)
             title.value = article.title
             content.value = article.content
             date.value = article.date
