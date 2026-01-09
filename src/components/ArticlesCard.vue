@@ -211,7 +211,7 @@ function toArticle(){
     flex-direction: column;
   }
   .card{
-    height: 35dvh;
+    height: 300px;
   }
   .thumb {
     width: 100%;
