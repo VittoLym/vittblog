@@ -68,7 +68,7 @@ async function onLogin() {
   display: grid;
   place-items: center;
   background: radial-gradient(circle at top, #1b1b1b, #000);
-  color: #fff;
+  color: var(--text);
 }
 
 .login-card {
@@ -107,7 +107,7 @@ input {
   border-radius: 10px;
   border: none;
   background: #111;
-  color: white;
+  color: var(--text);
   outline: none;
 }
 
@@ -122,7 +122,7 @@ button {
   border-radius: 12px;
   border: none;
   background: linear-gradient(135deg, #7aa2ff, #5f8dff);
-  color: black;
+  color: var(--bg);
   font-weight: 600;
   cursor: pointer;
 }
@@ -134,7 +134,7 @@ button:disabled {
 
 .error {
   margin-top: .8rem;
-  color: #ff6b6b;
+  color: var(--negative);
   font-size: .85rem;
 }
 .login-card {

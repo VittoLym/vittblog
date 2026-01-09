@@ -29,7 +29,7 @@
   .bars {
     width: 100%;
     height: 4px;
-    background-color: rgb(253, 255, 243);
+    background-color: var(--text);
     border-radius: 5px;
     transition-duration: .3s;
   }

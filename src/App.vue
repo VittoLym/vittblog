@@ -84,9 +84,11 @@
 :root {
   --bg: #0e0e11;
   --bg-soft: #15151b;
+  --bg-tr:#7c8bff1a;
   --text: #eaeaf0;
   --muted: #9a9aa3;
   --accent: #7c8cff;
+  --negative: #ff6b6b;
 }
 
 * {
@@ -142,7 +144,7 @@ body {
 }
 
 .logo span {
-  color: var(--accent);
+  color: var(--negative);
 }
 
 .nav {
@@ -161,7 +163,7 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #ccc;
+  color: var(--text);
   font-size: .9rem;
   font-weight: 500;
   border: none;
@@ -174,12 +176,12 @@ body {
   background: rgba(255, 255, 255, 0.03);
 }
 .link:hover {
-  color: #fff;
+  color: var(--text);
   background: rgba(255,255,255,.08);
 }
 
 .link.active {
-  color: #7aa2ff;
+  color: var(--accent);
   background: rgba(122,162,255,.15);
 }
 
@@ -196,7 +198,7 @@ body {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: #eaeaf0;
+  color: var(--text);
   margin-left: 1rem;
   font-size: .9rem;
   font-weight: 500;
@@ -226,7 +228,7 @@ body {
 
 .logout {
   border: none;
-  color: #ff6b6b;
+  color: var(--negative);
   font-size: .9rem;
   font-weight: 500;
   cursor: pointer;
@@ -240,7 +242,7 @@ body {
 
 .logout:hover {
   background: rgba(255, 107, 107, 0.247);
-  color: #eaeaf0;
+  color: var(--text);
 }
 
 @media (max-width: 768px) {

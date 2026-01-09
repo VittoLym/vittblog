@@ -101,7 +101,7 @@ onMounted(() => {
 
 <style scoped>
 .skeleton-post{
-  color: #eaeaea;
+  color: var(--text);
   line-height: 1.75;
   width: 100%;
   min-height: 90dvh;
@@ -201,7 +201,7 @@ onMounted(() => {
   to { transform: rotate(360deg); }
 }
 .post {
-  color: #eaeaea;
+  color: var(--text);
   line-height: 1.75;
   width: 100%;
   min-height: 100dvh;
@@ -245,7 +245,7 @@ onMounted(() => {
 .back {
   background: none;
   border: none;
-  color: #7aa2ff;
+  color: var(--negative);
   font-size: .95rem;
   cursor: pointer;
   padding: 2rem 3rem;
@@ -258,7 +258,7 @@ onMounted(() => {
 .back:hover {
   text-decoration: underline;
   background-color: #7aa2ff44;
-  color: #eaeaea;
+  color: var(--text);
 }
 .post {
   animation: fade .4s ease;
@@ -301,7 +301,7 @@ onMounted(() => {
   align-items: center;
   gap: .6rem;
   font-size: .85rem;
-  color: rgba(255,255,255,.7);
+  color: var(--text);
 }
 
 .meta span {

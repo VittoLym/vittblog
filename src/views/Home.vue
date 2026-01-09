@@ -118,7 +118,7 @@ async function deleteArticle(id) {
 }
 
 .error {
-  color: #ff6b6b;
+  color: var(--negative);
 }
 
 .empty {
@@ -137,7 +137,7 @@ async function deleteArticle(id) {
   margin-bottom: 2rem;
 }
 .title span{
-  color:  #7c8cff;
+  color:  var(--accent);
 }
 .new {
   background: linear-gradient(135deg, #7aa2ff, #5f8dff);

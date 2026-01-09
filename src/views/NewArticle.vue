@@ -164,7 +164,7 @@ async function saveArticle(){
   justify-content: center;
   padding: 4rem 1rem;
   background: #0f0f0f;
-  color: #eaeaea;
+  color: var(--text);
 }
 
 .card {
@@ -192,13 +192,13 @@ h1 {
 .cancel {
   background: none;
   border: none;
-  color: #888;
+  color: var(--muted);
   cursor: pointer;
   font-size: .9rem;
 }
 
 .cancel:hover {
-  color: #bbb;
+  color: var(--text);
 }
 
 .field {
@@ -208,7 +208,7 @@ h1 {
 label {
   display: block;
   font-size: .75rem;
-  color: #aaa;
+  color: var(--text);
   margin-bottom: .3rem;
 }
 
@@ -219,7 +219,7 @@ textarea {
   border-radius: 8px;
   border: 1px solid #222;
   background: #0e0e0e;
-  color: #eaeaea;
+  color: var(--text);
   font-size: .95rem;
 }
 
@@ -230,7 +230,7 @@ textarea {
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #7aa2ff;
+  border-color: var(--accent);
 }
 
 .actions {
@@ -260,7 +260,7 @@ textarea:focus {
 
 .error {
   margin-top: .8rem;
-  color: #ff7a7a;
+  color: var(--negative);
   font-size: .85rem;
 }
 

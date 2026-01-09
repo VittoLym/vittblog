@@ -12,7 +12,7 @@
 .Blog_Container{
     width: 100%;
     height: 100dvh;
-    background-color:  #7c8bff1a;
+    background-color:  var(--bg-tr);
     display: flex;
     justify-content: center;
     align-items: center;

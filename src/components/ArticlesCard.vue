@@ -148,7 +148,7 @@ function goArticle(event){
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.3;
-  color: #ff6b6b;
+  color: var(--negative);
 }
 
 /* Actions */
@@ -161,7 +161,7 @@ function goArticle(event){
 }
 
 .error {
-  color: #ff6b6b;
+  color: var(--negative);
 }
 .icon {
   background: transparent;
@@ -178,11 +178,11 @@ function goArticle(event){
 }
 
 .icon.delete:hover {
-  color: #ff6b6b;
+  color:var(--negative);
 }
 
 .icon.edit:hover {
-  color: #7c8cff;
+  color: var(--accent);
 }
 
 /* Meta */
@@ -206,7 +206,7 @@ function goArticle(event){
 .read {
   background: none;
   border: none;
-  color: #7c8cff;
+  color: var(--accent);
   font-weight: 500;
   cursor: pointer;
   padding: 0;

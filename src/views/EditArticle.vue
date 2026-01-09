@@ -104,7 +104,7 @@ textarea {
   border-radius: 10px;
   border: 1px solid #222;
   background: #121218;
-  color: #eee;
+  color: var(--text);
 }
 
 .actions {
@@ -120,6 +120,6 @@ button {
 }
 
 .error {
-  color: #ff6b6b;
+  color: var(--negative);
 }
 </style>

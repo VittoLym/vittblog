@@ -72,7 +72,7 @@
 .options a{
     text-decoration: none;
     font-weight: 500;
-    color: #fff;
+    color: var(--text);
     width: 100%;
     padding: 4vh 0;
     text-align: center;
@@ -82,6 +82,6 @@
 
 .options a[href="/logout"]:hover {
   background: rgba(255,107,107,.2);
-  color: #ff6b6b;
+  color: var(--negative);
 }
 </style>

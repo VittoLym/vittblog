@@ -21,7 +21,7 @@
   .sign {
     width: 100%;
     font-size: 2em;
-    color: #eaeaf0;
+    color: var(--text);
     transition-duration: .3s;
     display: flex;
     align-items: center;
@@ -33,7 +33,7 @@
     right: 0%;
     width: 0%;
     opacity: 0;
-    color: #eaeaf0;
+    color: var(--text);
     font-size: 1em;
     font-weight: 500;
     transition-duration: .3s;
