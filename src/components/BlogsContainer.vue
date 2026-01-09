@@ -88,7 +88,8 @@
   text-decoration: none;
   padding: .7rem 1.4rem;
   border-radius: 10px;
-  background: var(--accent);
+
+  background: rgba(255, 255, 255, 0.03);
   color: var(--text);
   font-weight: 600;
 }
