@@ -28,7 +28,7 @@
     <header class="header">
       <div class="header-inner">
         <article class="main_header">
-          <h1 class="logo">Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠<br><span>(Y Pensamientos Intrusivos)</span></h1>
+          <h1 class="logo">Vitt<span>.</span>Blog</h1>
         </article>
         <aside class="buttons">
           <nav class="nav" >
@@ -381,7 +381,7 @@ body {
     display: none;
   }
   .logo {
-    font-size: .85rem;
+    font-size: 1.2rem;
     line-height: 1.4;
     width: 80%;
   }

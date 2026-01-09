@@ -45,7 +45,7 @@ function goArticle(event){
         />
       </div>
       <div class="body">
-        <header class="header">
+        <header class="card-header">
           <div>
             <h2 class="title">{{ article.title }}</h2>
             <span class="owner">✍️ {{ article.owner_name }}</span>
@@ -123,7 +123,7 @@ function goArticle(event){
   width: max-content;
 }
 .card {
-  background: linear-gradient(180deg, #15151b, #101015);
+  background-color: var(--bg);
   border-radius: 10px;
   transition: transform .25s ease;
   height: 33vh;
@@ -135,13 +135,16 @@ function goArticle(event){
 }
 
 /* Header */
-.header {
+.card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   padding: 0.3rem .5rem ;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(180deg, #15151b, #101015);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1f1f27;
 }
 
 .title {
@@ -234,19 +237,19 @@ function goArticle(event){
   .body{
     height: 10vh;
   }
-  .body .header{
+  .body .card-header{
     overflow: hidden;
   }
-  .body .header .title{
+  .body .card-header .title{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
   } 
-  .header div{
+  .card-header div{
     width: 70%;
   }
-  .header .actions{
+  .card-header .actions{
     justify-content: end;
   }
   .read{

@@ -3,34 +3,28 @@
 
 </script>
 <template>
-  <div class="Blog_Container">
-    <section class="layout">
-      <div class="hero">
-        <span class="badge">Blog</span>
-
-        <h1>
-          Ideas, código,<br />
-          experiencias reales y<br />
-          <s>análisis rebuscados</s>
-        </h1>
-
-        <p>
-          Artículos sobre desarrollo web, proyectos personales
-          y aprendizajes del día a día como desarrollador.
-        </p>
-
-        <div class="actions">
-          <a href="#posts" class="primary">Ver Artículos</a>
-          <router-link class="primary" to="/article/new" v-if="isLogged">+ Nuevo Artículo</router-link>
-        </div>
-      </div>
-    </section>
-  </div>
+    <div class="Blog_Container">
+        <section class="layout">
+            <div class="hero">
+                <span class="badge">Blog</span>
+                <h1 class="logo">Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠<br><span><s>(Y Pensamientos Intrusivos)</s></span></h1>
+                <p>
+                    Artículos sobre desarrollo web, proyectos personales
+                    y aprendizajes del día a día como desarrollador.
+                </p>
+                <div class="actions">
+                    <a href="#posts" class="primary">Ver Artículos</a>
+                    <router-link class="primary" to="/article/new" v-if="isLogged">+ Nuevo Artículo</router-link>
+                </div>
+            </div>
+        </section>
+    </div>
 </template>
 <style scoped>
 .Blog_Container{
     height: 90vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     border-bottom: 1px solid #1f1f27;
     background-color: var(--bg);
@@ -48,8 +42,26 @@
 }
 .layout{
     display: flex;
-    justify-content: center;
+    padding:2rem 1rem;
+}
+.presentation{
+    display: flex;
+    flex-direction: column;
     align-items: center;
+}
+.logo{
+    font-size: 1.5rem;
+    padding: .25rem 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    align-items: center;
+    width: 90%;
+    height: 130px;
+    margin:0;
+}
+.logo span {
+    color: var(--negative);
+    font-size:1rem;
 }
 .hero {
   max-width: 620px;
@@ -67,10 +79,10 @@
   margin-bottom: .8rem;
 }
 
-.hero h1 {
-  font-size: 2.4rem;
+.hero h2 {
   line-height: 1.1;
   margin-bottom: 1rem;
+  margin-top: .5rem;
 }
 
 .hero p {
@@ -115,7 +127,8 @@
 @media (max-width: 600px) {
   .layout {
     width: 100%;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
+    margin:0;
   }
 
   .hero h1 {
