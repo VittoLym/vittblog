@@ -5,7 +5,9 @@ const route = useRoute()
 const router = useRouter()
 const defaultImage =
   "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80"
-
+const isMobile = () => {
+  return window.innerWidth <= 768
+}
 const props = defineProps({
   article: Object,
   isError: Object
@@ -23,10 +25,15 @@ function onDelete() {
 function toArticle(){
   router.push(`/article/${props.article.id}`)
 }
+function goArticle(id){
+  if(isMobile){
+    toArticle()
+  }
+}
 </script>
 
 <template>
-  <article class="card">
+  <article class="card" @click="goArticle">
     <div class="layout">
       <div class="thumb">
         <img
