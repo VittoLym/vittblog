@@ -24,21 +24,13 @@
 </script>
 
 <template>
-  <div class="layout">
+  <div class="main-layout">
     <header class="header">
       <div class="header-inner">
         <article class="main_header">
-          <img src="./assets/Jotchua.jpg" alt="Vitt.">
           <h1 class="logo">Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠<br><span>(Y Pensamientos Intrusivos)</span></h1>
         </article>
         <aside class="buttons">
-          <button
-            v-if="isLogged"
-            class="new"
-            @click="goNew"
-          >
-            + Nuevo Blog
-          </button>
           <nav class="nav" >
             <RouterLink to="/" class="link" v-if="route.path !== '/'" active-class="active">
               Home
@@ -48,7 +40,7 @@
               class="logout"
               @click="onLogout"
             >
-              Logout
+              Cerrar Sesión
             </button>
             <RouterLink
               v-if="!isLogged && route.path !== '/login'"
@@ -58,6 +50,15 @@
             >
               Login 
             </RouterLink>
+            <button
+              v-if="isLogged"
+              class="new"
+              @click="goNew"
+              title="Nuevo Blog"
+            >
+              <div class="sign">+</div>
+              <div class="text">Crear Blog</div>
+            </button>
           </nav>
         </aside>
       </div>
@@ -102,25 +103,40 @@ body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+  linear-gradient(
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px
+  ),
+  linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px
+  );
+  background-size: 40px 40px;
   color: var(--text);
   overflow: auto;
 }
-
 .header {
-  background: rgba(14, 14, 17, 0.75);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid #1f1f27;
   height: 20dvh;
+  width: 80vw;
+  padding: 0 1rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 .header-inner {
-  width: 80vw;
   margin: auto;
-  padding: 1.5rem 0;
+  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: min-content;
+  background: var(--bg-tr);
+  padding: .5rem 1rem;
+  width: 100%;
+  border-radius: 45px;
 }
 .main_header{
   display: flex;
@@ -135,12 +151,12 @@ body {
   display: flex;
   flex-direction: row;
   height: 60%;
-  width: 25dvw;
   justify-content: end;
 }
 
 .logo {
   margin: 0;
+  margin-left: .5rem;
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -155,13 +171,12 @@ body {
   gap: 1rem;
   justify-content: end;
   padding: 0;
-  backdrop-filter: blur(8px);
   transition: all ease .3s;
   height: 100%;
-  width: 100%;
 }
 
 .link {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,13 +185,31 @@ body {
   font-size: .9rem;
   font-weight: 500;
   border: none;
-  border-radius: 10px;
+  border-radius: 45px;
   cursor: pointer;
-  margin-left: 1rem;
   padding: .4rem .9rem;
   transition: all .2s ease;
-  width: 80%;
   background: rgba(255, 255, 255, 0.03);
+  width: 10vw;
+  height: 50px;
+  overflow: hidden;
+}
+.link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform .4s ease;
+}
+
+.link:hover::before {
+  transform: translateX(100%);
 }
 .link:hover {
   color: var(--text);
@@ -197,22 +230,74 @@ body {
 }
 
 .new {
+  position: relative;
   background: linear-gradient(135deg, #7aa2ff, #5f8dff);
   border: none;
-  border-radius: 10px;
+  border-radius: 45px;
   cursor: pointer;
   color: var(--text);
-  margin-left: 1rem;
   font-size: .9rem;
   font-weight: 500;
   padding: .4rem .9rem;
   transition: all .2s ease;
-  width: 60%;
+  width: 3.5vw;
+  height: 50px;
+  overflow: hidden;
+  display: flex;
 }
-
+.new::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255, 255, 255),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform .4s ease;
+}
+.new:hover::before {
+  transform: translateX(100%);
+}
 .new:hover {
   opacity: .9;
+  width: 130px;
+  transition-duration: .3s;
 }
+.new .text {
+    width: 0%;
+    opacity: 0;
+    color: var(--text);
+    font-size: 1em;
+    font-weight: 500;
+    transition-duration: .3s;
+    display: flex;
+    align-self: center;
+    white-space:nowrap;
+}
+.new .sign {
+    width: 100%;
+    font-size: 2em;
+    color: var(--text);
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.new:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+}
+.new:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+}
+.new:active {
+    transform: translate(2px ,2px);
+  }
 .main {
   flex: 1;
   width: 100%;
@@ -230,19 +315,37 @@ body {
 }
 
 .logout {
+  position: relative;
   border: none;
   color: var(--negative);
   font-size: .9rem;
   font-weight: 500;
   cursor: pointer;
   padding: .4rem .9rem;
-  border-radius: 10px;
+  border-radius: 45px;
   transition: all .2s ease;
   background: rgba(255, 255, 255, 0.03);
-  width: 80%;
-  height: 100%;
+  width: 10vw;
+  height: 50px;
+  overflow: hidden;
+}
+.logout::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform .4s ease;
 }
 
+.logout:hover::before {
+  transform: translateX(100%);
+}
 .logout:hover {
   background: rgba(255, 107, 107, 0.247);
   color: var(--text);

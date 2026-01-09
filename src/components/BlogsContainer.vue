@@ -33,7 +33,7 @@
     display: flex;
     justify-content: center;
     border-bottom: 1px solid #1f1f27;
-    background-color: #0f0f14;
+    background-color: var(--bg);
     background-image:
     linear-gradient(
         rgba(255,255,255,0.03) 1px,
@@ -85,13 +85,32 @@
 }
 
 .primary {
-  text-decoration: none;
-  padding: .7rem 1.4rem;
-  border-radius: 10px;
-
-  background: rgba(255, 255, 255, 0.03);
+  position: relative;
+  overflow: hidden;
   color: var(--text);
+  border-radius: 10px;
   font-weight: 600;
+  padding: .7rem 1.4rem;
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+}
+
+.primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform .4s ease;
+}
+
+.primary:hover::before {
+  transform: translateX(100%);
 }
 @media (max-width: 600px) {
   .layout {

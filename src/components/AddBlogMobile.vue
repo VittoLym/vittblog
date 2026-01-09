@@ -13,7 +13,6 @@
     background-color: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
     margin-right: .5vw;
-    display: none;
     margin-bottom: 1vh;
   }
 
