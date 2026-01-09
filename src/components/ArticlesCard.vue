@@ -105,16 +105,6 @@ function toArticle(){
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .layout {
-    flex-direction: column;
-  }
-
-  .thumb {
-    width: 100%;
-    height: 160px;
-  }
-}
   .owner {
   display: block;
   margin-top: .2rem;
@@ -124,7 +114,7 @@ function toArticle(){
 }
 .card {
   background: linear-gradient(180deg, #15151b, #101015);
-  border-radius: 18px;
+  border-radius: 10px;
   transition: transform .25s ease;
   height: 33vh;
   overflow: hidden;
@@ -214,5 +204,43 @@ function toArticle(){
 
 .read:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  .card{
+    height: 35dvh;
+  }
+  .thumb {
+    width: 100%;
+    height: 160px;
+    border-radius: 10px 10px 0 0;
+  }
+  .content{
+    display: none;
+  }
+  .body{
+    height: 10vh;
+  }
+  .body .header{
+    overflow: hidden;
+  }
+  .body .header .title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  } 
+  .header div{
+    width: 70%;
+  }
+  .header .actions{
+    justify-content: end;
+  }
+  .read{
+    display: none;
+  }
 }
 </style>

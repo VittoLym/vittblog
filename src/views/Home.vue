@@ -190,5 +190,8 @@ async function deleteArticle(id) {
   .new{
     display: none;
   }
+  .container{
+    padding: 2rem 0;
+  }
 }
 </style>
