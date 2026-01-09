@@ -35,10 +35,9 @@
 <style scoped>
 .mobile-menu {
   position: fixed;
-  top: 90px;
   right: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.95);
+  background: var(--bg-soft);
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
@@ -46,7 +45,7 @@
   gap: 1.5rem;
   padding-top: 2rem;
   z-index: 909;
-  height: calc(100dvh - 90px);
+  height: 100dvh;
 }
 .slide-enter-active,
 .slide-leave-active {

@@ -61,11 +61,11 @@
             </button>
           </nav>
         </aside>
+        <BurgerIcon
+        @menuChange="mobileState"
+        v-model="menuIsOpen"
+        />
       </div>
-      <BurgerIcon
-      @menuChange="mobileState"
-      v-model="menuIsOpen"
-      />
     </header>
     <MenuMobile :isOpen="menuIsOpen" @selectMenu="mobileState"/>
     <main class="main">
@@ -350,21 +350,26 @@ body {
   background: rgba(255, 107, 107, 0.247);
   color: var(--text);
 }
-
+.main{
+  background-color: var(--bg-soft);
+}
 @media (max-width: 768px) {
   .header{
-    height: min-content;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    padding: 0 .5rem;
+    z-index: 100;
   }
   .header-inner {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1.2rem;
-    padding: .5rem 0;
+    padding: .5rem 1rem;
     overflow: hidden;
     margin: 0;
-    width: 60%;
+    width: 100%;
   }
 
   .main_header {
@@ -376,12 +381,13 @@ body {
     display: none;
   }
   .logo {
-    font-size: 1.1rem;
+    font-size: .85rem;
     line-height: 1.4;
+    width: 80%;
   }
 
   .logo span {
-    font-size: .9rem;
+    font-size: .7rem;
     width: max-content;
   }
 
