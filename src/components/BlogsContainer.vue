@@ -18,7 +18,7 @@
     align-items: center;
 }
 .layout{
-  width: 70dvw;
+  width: 80dvw;
   margin: auto;
   padding: 2rem 1rem;
 }

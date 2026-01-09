@@ -4,6 +4,7 @@ import ArticleCard from "../components/ArticlesCard.vue"
 import { refresh_token } from "../stores/auth"
 import { useRoute, useRouter } from "vue-router"
 import BlogsContainer from "../components/BlogsContainer.vue"
+import AddBlogMobile from "../components/AddBlogMobile.vue"
 
 const router = useRouter()
 
@@ -59,7 +60,7 @@ async function deleteArticle(id) {
   <BlogsContainer/>
   <section class="container">
     <header class="header">
-      <h1 class="title">📝 Vitt<span>.</span> Blog Lista</h1>
+      <h1 class="title">📝Vitt<span>.</span>Blog(s)</h1>
       <button
         v-if="isAdmin"
         class="new"
@@ -67,6 +68,10 @@ async function deleteArticle(id) {
       >
         + Nuevo artículo
       </button>
+      <AddBlogMobile
+      v-if="isAdmin"
+      @click="goNew"
+      />
     </header>
     <div v-if="loading" class="loading">
       <div class="spinner"></div>
@@ -96,18 +101,11 @@ async function deleteArticle(id) {
 
 <style scoped>
 .container {
-  width: 70dvw;
+  width: 80dvw;
   margin: auto;
   padding: 2rem 1rem;
 }
 
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-}
-.title span{
-  color:  #7c8cff;
-}
 .grid {
   display: grid;
   gap: 1.5rem;
@@ -133,6 +131,13 @@ async function deleteArticle(id) {
   align-items: center;
 }
 
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+.title span{
+  color:  #7c8cff;
+}
 .new {
   background: linear-gradient(135deg, #7aa2ff, #5f8dff);
   border: none;
@@ -176,6 +181,14 @@ async function deleteArticle(id) {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+@media (max-width: 768px){
+  .title{
+    font-size:1.5rem;
+  }
+  .new{
+    display: none;
   }
 }
 </style>

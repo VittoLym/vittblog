@@ -30,9 +30,16 @@
       <div class="header-inner">
         <article class="main_header">
           <img src="./assets/Jotchua.jpg" alt="Vitt.">
-          <h1 class="logo">Vitt<span>.</span>Blog | Desarrollo & Tecnología <br><span>(Y Pensamientos Intrusivos)</span></h1>
+          <h1 class="logo">Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠<br><span>(Y Pensamientos Intrusivos)</span></h1>
         </article>
         <aside class="buttons">
+          <button
+            v-if="isLogged"
+            class="new"
+            @click="goNew"
+          >
+            + Nuevo Blog
+          </button>
           <nav class="nav" >
             <RouterLink to="/" class="link" v-if="route.path !== '/'" active-class="active">
               Home
@@ -53,13 +60,6 @@
               Login 
             </RouterLink>
           </nav>
-          <button
-          v-if="isLogged"
-          class="new"
-          @click="goNew"
-          >
-          + Nuevo Blog
-        </button>
         </aside>
       </div>
       <BurgerIcon
@@ -110,7 +110,7 @@ body {
   height: 20dvh;
 }
 .header-inner {
-  width: 70vw;
+  width: 80vw;
   margin: auto;
   padding: 1.5rem 0;
   display: flex;
@@ -132,7 +132,7 @@ body {
   flex-direction: row;
   height: 60%;
   width: 25dvw;
-  justify-content: stretch;
+  justify-content: end;
 }
 
 .logo {
@@ -149,7 +149,7 @@ body {
 .nav {
   display: flex;
   gap: 1rem;
-  align-items: end;
+  justify-content: end;
   padding: 0;
   backdrop-filter: blur(8px);
   transition: all ease .3s;
@@ -168,7 +168,7 @@ body {
   margin-left: 1rem;
   padding: .4rem .9rem;
   transition: all .2s ease;
-  width: 110%;
+  width: 80%;
   text-align: center;
   line-height: 250%;
   height: 100%;
@@ -235,7 +235,7 @@ body {
   border-radius: 10px;
   transition: all .2s ease;
   background: rgba(255, 255, 255, 0.03);
-  width: 110%;
+  width: 80%;
   height: 100%;
 }
 
