@@ -141,7 +141,7 @@ function goArticle(event){
   align-items: center;
   gap: 1rem;
   padding: 0.3rem .5rem ;
-  border-radius: 18px;
+  border-radius: 10px;
 }
 
 .title {
