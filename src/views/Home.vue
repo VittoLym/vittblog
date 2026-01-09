@@ -52,6 +52,7 @@ async function deleteArticle(id) {
     return
   }
   articles.value = articles.value.filter(a => a.id !== id)
+  router.push('/')
 }
 
 </script>

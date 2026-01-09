@@ -11,7 +11,6 @@
     logout()
     router.push("/login")
   }
-  
   function goNew() {
     router.push("/article/new")
   }

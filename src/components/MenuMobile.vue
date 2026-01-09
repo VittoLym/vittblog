@@ -13,7 +13,9 @@
         logout()
         onSelect()
         router.push("/login")
-
+    }
+    const goPortfolio = () => {
+        window.open("https://devitto.netlify.app/", "_blank")
     }
 
 </script>
@@ -21,7 +23,7 @@
     <transition name="slide">
         <div class="mobile-menu" v-if="isOpen">
             <aside class="options">
-                <img src="../assets/Jotchua.jpg" alt="">
+                <img src="../assets/Jotchua.jpg" alt="Un perrito muy amable" title="Un perrito muy amable" @click="goPortfolio">
                 <RouterLink to="/" v-if="route.path !== '/'" @click="onSelect">Home</RouterLink>
                 <RouterLink to="/login" v-if="route.path !=='/login' && !isLogged" @click="onSelect">Login</RouterLink>
                 <RouterLink to="/login" v-if="isLogged && route.path !=='/login'" @click="onLogout">Logout</RouterLink>

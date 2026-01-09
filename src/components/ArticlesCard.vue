@@ -25,8 +25,11 @@ function onDelete() {
 function toArticle(){
   router.push(`/article/${props.article.id}`)
 }
-function goArticle(id){
+function goArticle(event){
   if(isMobile){
+    if (event.target.closest('.actions')) {
+      return;
+    }
     toArticle()
   }
 }

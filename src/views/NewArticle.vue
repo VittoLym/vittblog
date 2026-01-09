@@ -58,7 +58,7 @@ async function saveArticle(){
         content: content.value,
         date: date.value,
         owner: owner.value,
-        image: imageUrl.value
+        image: imageUrl.value ? imageUrl.value != '' : image.value
       })
     })
     
