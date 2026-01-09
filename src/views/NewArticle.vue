@@ -159,7 +159,7 @@ async function saveArticle(){
 }
 
 .page {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   padding: 4rem 1rem;
@@ -262,6 +262,65 @@ textarea:focus {
   margin-top: .8rem;
   color: var(--negative);
   font-size: .85rem;
+}
+@media (max-width: 768px) {
+  .page {
+    height: 90vh;
+    padding: 2rem 1rem;
+  }
+
+  .card {
+    padding: 1.4rem 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .header {
+    flex-direction: row;
+    align-items: center;
+    gap: .6rem;
+    justify-content: space-between;
+    padding: .5rem 0;
+  }
+
+  h1 {
+    font-size: 1.35rem;
+  }
+
+  .cancel {
+    align-self: center;
+    font-size: .85rem;
+    height: 100%;
+  }
+
+  label {
+    font-size: .7rem;
+  }
+
+  input,
+  textarea {
+    font-size: .9rem;
+    padding: .65rem .75rem;
+  }
+
+  .preview img {
+    max-height: 200px;
+  }
+
+  .actions {
+    justify-content: center;
+    position: sticky;
+    bottom: 0;
+    padding-top: 0;
+  }
+
+  .primary {
+    width: 100%;
+    padding: .75rem;
+    font-size: .95rem;
+  }
 }
 
 </style>
