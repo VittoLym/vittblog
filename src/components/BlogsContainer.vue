@@ -22,10 +22,10 @@
 </template>
 <style scoped>
 .Blog_Container{
-    height: 90vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     border-bottom: 1px solid #1f1f27;
     background-color: var(--bg);
     background-image:
@@ -128,9 +128,8 @@
   .layout {
     width: 100%;
     padding: 2rem 1rem;
-    margin:0;
+    margin-top:10dvh;
   }
-
   .hero h1 {
     font-size: 1.8rem;
   }
