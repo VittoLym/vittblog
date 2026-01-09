@@ -132,6 +132,8 @@
   }
   .hero h1 {
     font-size: 1.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .hero p {

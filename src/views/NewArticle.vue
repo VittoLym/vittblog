@@ -265,7 +265,7 @@ textarea:focus {
 }
 @media (max-width: 768px) {
   .page {
-    height: 90vh;
+    height: 90%;
     padding: 2rem 1rem;
   }
 
@@ -286,7 +286,10 @@ textarea:focus {
   }
 
   h1 {
-    font-size: 1.35rem;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .cancel {
