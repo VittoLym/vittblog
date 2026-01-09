@@ -314,8 +314,6 @@ textarea:focus {
 
   .actions {
     justify-content: center;
-    position: sticky;
-    bottom: 0;
     padding-top: 0;
   }
 

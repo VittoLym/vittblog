@@ -43,6 +43,9 @@
 .layout{
     display: flex;
     padding:2rem 1rem;
+    justify-content: center;
+    align-items: center ;
+    margin-top: 15vh;
 }
 .presentation{
     display: flex;
@@ -56,7 +59,6 @@
     letter-spacing: 0.5px;
     align-items: center;
     width: 90%;
-    height: 130px;
     margin:0;
 }
 .logo span {
