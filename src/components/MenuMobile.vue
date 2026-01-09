@@ -25,6 +25,7 @@
             <aside class="options">
                 <img src="../assets/Jotchua.jpg" alt="Un perrito muy amable" title="Un perrito muy amable" @click="goPortfolio">
                 <RouterLink to="/" v-if="route.path !== '/'" @click="onSelect">Home</RouterLink>
+                <router-link to="/article/new" v-if="isLogged" @click="onSelect"> + Nuevo Artículo</router-link>
                 <RouterLink to="/login" v-if="route.path !=='/login' && !isLogged" @click="onSelect">Login</RouterLink>
                 <RouterLink to="/login" v-if="isLogged && route.path !=='/login'" @click="onLogout">Logout</RouterLink>
             </aside>

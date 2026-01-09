@@ -1,4 +1,5 @@
 <script setup>
+    import { isLogged } from "../stores/auth.js"
 
 </script>
 <template>
@@ -19,7 +20,8 @@
         </p>
 
         <div class="actions">
-          <a href="#posts" class="primary">Ver artículos</a>
+          <a href="#posts" class="primary">Ver Artículos</a>
+          <router-link class="primary" to="/article/new" v-if="isLogged">+ Nuevo Artículo</router-link>
         </div>
       </div>
     </section>
@@ -87,7 +89,7 @@
   padding: .7rem 1.4rem;
   border-radius: 10px;
   background: var(--accent);
-  color: #fff;
+  color: var(--text);
   font-weight: 600;
 }
 @media (max-width: 600px) {
