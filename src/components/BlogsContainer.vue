@@ -27,7 +27,7 @@
 </template>
 <style scoped>
 .Blog_Container{
-    height: 90dvh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     border-bottom: 1px solid #1f1f27;
