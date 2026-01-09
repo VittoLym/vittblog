@@ -46,7 +46,7 @@ function goArticle(event){
       </div>
       <div class="body">
         <header class="card-header">
-          <div>
+          <div class="info">
             <h2 class="title">{{ article.title }}</h2>
             <span class="owner">✍️ {{ article.owner_name }}</span>
             <small class="date">
@@ -137,8 +137,8 @@ function goArticle(event){
 /* Header */
 .card-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   padding: 0.3rem .5rem ;
   border-radius: 0 0 10px 10px;
@@ -246,8 +246,9 @@ function goArticle(event){
     text-overflow: ellipsis;
     width: 100%;
   } 
-  .card-header div{
+  .card-header .info{
     width: 70%;
+    overflow: hidden;
   }
   .card-header .actions{
     justify-content: end;

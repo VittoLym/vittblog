@@ -60,14 +60,14 @@ async function deleteArticle(id) {
   
   <BlogsContainer/>
   <section class="container">
-    <header class="header">
+    <header class="header-home">
       <h1 class="title">📝Vitt<span>.</span>Blog(s)</h1>
       <button
         v-if="isAdmin"
         class="new"
         @click="goNew"
       >
-        + Nuevo artículo
+        + Nuevo Blog
       </button>
       <AddBlogMobile
       v-if="isAdmin"
@@ -126,7 +126,7 @@ async function deleteArticle(id) {
   margin-top: 4rem;
   opacity: 0.8;
 }
-.header {
+.header-home {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -147,6 +147,9 @@ async function deleteArticle(id) {
   font-weight: 600;
   cursor: pointer;
   width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .new.big {

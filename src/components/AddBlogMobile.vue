@@ -14,6 +14,7 @@
     border-radius: 10px;
     margin-right: .5vw;
     margin-bottom: 1vh;
+    display: none;
   }
 
   /* plus sign */

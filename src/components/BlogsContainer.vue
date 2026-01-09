@@ -13,8 +13,8 @@
                     y aprendizajes del día a día como desarrollador.
                 </p>
                 <div class="actions">
-                    <a href="#posts" class="primary">Ver Artículos</a>
-                    <router-link class="primary" to="/article/new" v-if="isLogged">+ Nuevo Artículo</router-link>
+                    <a href="#posts" class="primary">Ver Blogs</a>
+                    <router-link class="primary" to="/article/new" v-if="isLogged">+ Nuevo Blog</router-link>
                 </div>
             </div>
         </section>
