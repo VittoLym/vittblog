@@ -83,7 +83,7 @@ async function saveArticle(){
 <template>
   <section class="page">
     <form class="card" @submit.prevent="submit">
-      <header class="header">
+      <header class="header-new">
         <h1>✍️ Nuevo artículo</h1>
         <button type="button" class="cancel" @click="router.back()">
           Cancelar
@@ -159,7 +159,7 @@ async function saveArticle(){
 }
 
 .page {
-  height: 100vh;
+  height: max-content;
   display: flex;
   justify-content: center;
   padding: 4rem 1rem;
@@ -176,7 +176,7 @@ async function saveArticle(){
   box-shadow: 0 12px 30px rgba(0,0,0,.35);
 }
 
-.header {
+.header-new {
   display: flex;
   justify-content: space-between;
   align-items: center;
