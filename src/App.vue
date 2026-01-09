@@ -81,6 +81,9 @@
 </template>
 
 <style>
+html{
+  scroll-behavior: smooth;
+}
 :root {
   --bg: #0e0e11;
   --bg-soft: #15151b;

@@ -87,7 +87,7 @@ async function deleteArticle(id) {
         Crear primer artículo
       </button>
     </div>
-    <div v-else class="grid">
+    <div v-else class="grid" id="posts">
       <ArticleCard
         v-for="article in articles"
         :key="article.id"

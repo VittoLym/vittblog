@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -11,6 +14,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -31,6 +35,7 @@ body {
     "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--text);
+  scroll-behavior: smooth;
 }
 a {
   font-weight: 500;

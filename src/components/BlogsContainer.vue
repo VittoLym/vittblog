@@ -8,8 +8,9 @@
         <span class="badge">Blog</span>
 
         <h1>
-          Ideas, código<br />
-          y experiencias reales
+          Ideas, código,<br />
+          experiencias reales y<br />
+          <s>análisis rebuscados</s>
         </h1>
 
         <p>
