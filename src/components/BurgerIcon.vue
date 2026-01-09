@@ -1,3 +1,13 @@
+<script setup>
+  import { defineEmits } from 'vue';
+  const props = defineProps({
+    modelValue: Boolean
+  })
+  const emit = defineEmits(['menuChange',"update:modelValue"])
+  const changeState =()=>{ 
+      emit("menuChange",)
+  }
+</script>
 <style scoped>
   #checkbox {
     display: none;
@@ -60,7 +70,7 @@
 </style>
 
 <template>
-  <input id="checkbox" type="checkbox">
+  <input id="checkbox" type="checkbox" @click="changeState" :checked="props.modelValue" @change="emit('update:modelValue', $event.target.checked)">
       <label class="toggle" for="checkbox">
           <div id="bar1" class="bars"></div>
           <div id="bar2" class="bars"></div>

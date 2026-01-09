@@ -1,9 +1,12 @@
 <script setup>
+  import { ref,watch } from "vue"
   import { useRouter,useRoute } from "vue-router"
   import { isLogged, logout } from "../src/stores/auth.js"
   import BurgerIcon from "./components/BurgerIcon.vue"
+  import MenuMobile from "./components/MenuMobile.vue"
   const route = useRoute()
   const router = useRouter()
+  const menuIsOpen = ref(false)
   function onLogout() {
     logout()
     router.push("/login")
@@ -13,7 +16,12 @@
     router.push("/article/new")
   }
   
-
+  function mobileState(){
+    menuIsOpen.value = !menuIsOpen.value
+    watch(menuIsOpen, (open) => {
+      document.body.style.overflow = open ? "hidden" : ""
+    })
+  }
 </script>
 
 <template>
@@ -54,9 +62,12 @@
         </button>
         </aside>
       </div>
-      <BurgerIcon/>
+      <BurgerIcon
+      @menuChange="mobileState"
+      v-model="menuIsOpen"
+      />
     </header>
-
+    <MenuMobile :isOpen="menuIsOpen" @selectMenu="mobileState"/>
     <main class="main">
       <RouterView />
     </main>
@@ -89,6 +100,7 @@ body {
     "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--text);
+  overflow: auto;
 }
 
 .header {
