@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount,ref,computed } from "vue"
+import { onBeforeMount,ref,computed,onMounted } from "vue"
 import { useRouter,useRoute } from "vue-router"
 const route = useRoute()
 const router = useRouter()
@@ -9,18 +9,25 @@ const content = ref("")
 const date = ref(null)
 const owner = ref(null)
 const isLoading = ref(true)
-const defaultImage = ref("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80")
+const defaultImage = ref(null)
+const imageLoaded = ref(false)
 const backgroundStyle = computed(() => ({
-  background: `linear-gradient(
-    rgba(0,0,0,0.65),
-    rgba(0,0,0,0.85)
-  ), url(${defaultImage.value})`,
+  background: imageLoaded.value
+    ? `linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.85)
+      ), url(${defaultImage.value})`
+    : `linear-gradient(
+        rgba(0,0,0,0.75),
+        rgba(0,0,0,0.9)
+      )`,
   backgroundSize: "cover",
   backgroundPosition: "center",
 }))
 onBeforeMount(async () => {
   try {
     isLoading.value = true
+    imageLoaded.value = false
     const res = await fetch(
         `https://vittblog-backend-1.onrender.com/articles/${id}`
     )
@@ -32,17 +39,45 @@ onBeforeMount(async () => {
     defaultImage.value = article.image
     owner.value = article.owner_name
     isLoading.value = false
+    
+    imageLoaded.value =true ? article.image !== '': false
   } catch (err) {
       console.log(err)
   }
 })
+onMounted(() => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  })
+})
 </script>
 <template>
-<article class="post" :style="backgroundStyle">
-    <div v-if="isLoading" class="loading-container">
-      <div class="spinner">⏳</div>
-      <p>Cargando artículo...</p>
-    </div>
+  <article v-if="isLoading" class="skeleton-post" :style="backgroundStyle">
+    <header class="post-header-skeleton">
+      <h1 class="skeleton-title"></h1>
+
+      <div class="meta">
+        <span class="skeleton-meta"></span>
+        <span class="skeleton-meta"></span>
+      </div>
+    </header>
+
+    <section class="skeleton-content">
+      <p class="skeleton-line"></p>
+      <p class="skeleton-line"></p>
+      <p class="skeleton-line short"></p>
+      <p class="skeleton-line tiny"></p>
+    </section>
+
+    <footer class="footer">
+      <button class="back" disabled>
+        ← Volver
+      </button>
+    </footer>
+  </article>
+  <article v-else class="post" :style="backgroundStyle">
     <header class="post-header">
         <h1 class="title">{{ title }}</h1>
         <div class="meta">
@@ -61,10 +96,93 @@ onBeforeMount(async () => {
             ← Volver
         </button>
     </footer>
-</article>
+  </article>
 </template>
 
 <style scoped>
+.skeleton-post{
+  color: #eaeaea;
+  line-height: 1.75;
+  width: 100%;
+  min-height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.skeleton-content {
+    width: 92vw;
+    background: rgba(0,0,0,.35);
+    padding: 1.2rem;
+    border-radius: 12px;
+    height: 300px;
+    overflow: auto;
+}
+.skeleton-title,
+.skeleton-line,
+.skeleton-meta {
+  position: relative;
+  overflow: hidden;
+  background: #1c1c22;
+  border-radius: 6px;
+}
+
+/* shimmer */
+.skeleton-title::after,
+.skeleton-line::after,
+.skeleton-meta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent
+  );
+  animation: shimmer 1.3s infinite;
+}
+
+/* ===== Title ===== */
+.skeleton-title {
+  height: 3rem;
+  width: 65%;
+  margin-bottom: 1rem;
+}
+
+/* ===== Meta ===== */
+.post-header-skeleton .meta {
+  display: flex;
+  gap: 1rem;
+}
+
+.skeleton-meta {
+  height: 0.9rem;
+  width: 120px;
+}
+
+/* ===== Content ===== */
+.skeleton-line {
+  height: 1rem;
+  width: 100%;
+  margin-bottom: 0.8rem;
+}
+
+.skeleton-line.short {
+  width: 75%;
+}
+
+.skeleton-line.tiny {
+  width: 55%;
+}
+
+/* ===== Animation ===== */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
   .loading-container {
   display: flex;
   flex-direction: column;

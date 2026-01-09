@@ -157,6 +157,9 @@ body {
 }
 
 .link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: #ccc;
   font-size: .9rem;
@@ -168,9 +171,6 @@ body {
   padding: .4rem .9rem;
   transition: all .2s ease;
   width: 80%;
-  text-align: center;
-  line-height: 250%;
-  height: 100%;
   background: rgba(255, 255, 255, 0.03);
 }
 .link:hover {
