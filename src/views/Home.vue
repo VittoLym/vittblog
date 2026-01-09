@@ -146,6 +146,7 @@ async function deleteArticle(id) {
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
+  width: max-content;
 }
 
 .new.big {
