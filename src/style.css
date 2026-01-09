@@ -13,6 +13,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --bg: #0e0e11;
+  --bg-soft: #15151b;
+  --text: #eaeaf0;
+  --muted: #9a9aa3;
+  --accent: #7c8cff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
 a {
   font-weight: 500;
   color: #646cff;
