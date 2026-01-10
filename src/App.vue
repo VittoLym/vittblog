@@ -4,6 +4,9 @@
   import { isLogged, logout } from "../src/stores/auth.js"
   import BurgerIcon from "./components/BurgerIcon.vue"
   import MenuMobile from "./components/MenuMobile.vue"
+  import LoginIcon from "./components/LoginIcon.vue"
+  import HomeIcon from "./components/HomeIcon.vue"
+  import LogoutIcon from "./components/LogoutIcon.vue"
   const route = useRoute()
   const router = useRouter()
   const menuIsOpen = ref(false)
@@ -25,22 +28,29 @@
 
 <template>
   <div class="main-layout">
-    <header class="header">
+    <header class="header" id="home">
       <div class="header-inner">
         <article class="main_header">
           <h1 class="logo">Vitt<span>.</span>Blog</h1>
         </article>
+        <nav class="sections">
+          <a href="/">Home</a>
+          <a href="#posts">Blogs</a>
+          <a href="#footer">Footer</a>
+        </nav>
         <aside class="buttons">
           <nav class="nav" >
             <RouterLink to="/" class="link" v-if="route.path !== '/'" active-class="active">
-              Home
+              <HomeIcon/>
+              <div class="text">Home</div>
             </RouterLink>
             <button
               v-if="isLogged && route.path !== '/login'"
-              class="logout"
+              class="logout link"
               @click="onLogout"
             >
-              Cerrar Sesión
+              <LogoutIcon/>
+              <div class="text">Cerrar Sesión</div>
             </button>
             <RouterLink
               v-if="!isLogged && route.path !== '/login'"
@@ -48,7 +58,8 @@
               class="link"
               active-class="active"
             >
-              Login 
+              <LoginIcon/>
+              <div class="text">Iniciar Sesión</div>
             </RouterLink>
             <button
               v-if="isLogged"
@@ -72,7 +83,7 @@
       <RouterView />
     </main>
 
-    <footer class="footer">
+    <footer class="footer" id="footer">
       <p>
         © {{ new Date().getFullYear() }} Vitt —
         <span>Personal blog</span>
@@ -146,7 +157,20 @@ body {
   border-radius: 100%;
   margin-right: .5rem;
 }
-
+.sections{
+  width: 25vw;
+  display: flex;
+  justify-content: space-between;
+}
+.sections a{
+  text-decoration: none;
+  color: var(--text);
+  font-size: 500;
+  font-weight: bold;
+}
+.sections a:hover{
+  color: var(--muted);
+}
 .buttons{
   display: flex;
   flex-direction: row;
@@ -187,10 +211,9 @@ body {
   border: none;
   border-radius: 45px;
   cursor: pointer;
-  padding: .4rem .9rem;
   transition: all .2s ease;
   background: rgba(255, 255, 255, 0.03);
-  width: 10vw;
+  width: 3.5vw;
   height: 50px;
   overflow: hidden;
 }
@@ -214,17 +237,50 @@ body {
 .link:hover {
   color: var(--text);
   background: rgba(255,255,255,.08);
+  opacity: .9;
+  width: 150px;
+  transition-duration: .3s;
+  
 }
 
 .link.active {
   color: var(--accent);
   background: rgba(122,162,255,.15);
 }
-
+.link .text{
+    width: 0%;
+    opacity: 0;
+    color: var(--text);
+    font-size: 1em;
+    font-weight: 500;
+    transition-duration: .3s;
+    display: flex;
+    align-self: center;
+    white-space:nowrap;
+}
+.link .sign{
+    width: 100%;
+    font-size: 2em;
+    color: var(--text);
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.link
 .nav a:hover {
   color: var(--text);
 }
-
+.link:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+}
+.link:hover .text {
+    opacity: 1;
+    width: max-content;
+    transition-duration: .3s;
+    margin-left: .3rem;
+}
 .nav .active {
   color: var(--accent);
 }
@@ -238,7 +294,7 @@ body {
   color: var(--text);
   font-size: .9rem;
   font-weight: 500;
-  padding: .4rem .9rem;
+  padding: .5rem 1rem;
   transition: all .2s ease;
   width: 3.5vw;
   height: 50px;
@@ -321,12 +377,9 @@ body {
   font-size: .9rem;
   font-weight: 500;
   cursor: pointer;
-  padding: .4rem .9rem;
   border-radius: 45px;
   transition: all .2s ease;
   background: rgba(255, 255, 255, 0.03);
-  width: 10vw;
-  height: 50px;
   overflow: hidden;
 }
 .logout::before {
