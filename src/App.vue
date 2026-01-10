@@ -433,6 +433,9 @@ body {
   .main_header img {
     display: none;
   }
+  .sections{
+    display: none;
+  }
   .logo {
     font-size: 1.2rem;
     line-height: 1.4;
