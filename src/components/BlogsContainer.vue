@@ -195,8 +195,13 @@ const heroBackground = computed(() => {
     font-size: 1.2rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: 1rem;
+  }
+  .badge{
+    margin-left: 1rem;
   }
   .hero p {
+    margin-left: 1rem;
     width: 100%;
     font-size: .8rem;
     overflow: hidden;
