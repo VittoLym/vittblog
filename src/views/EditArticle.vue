@@ -27,6 +27,7 @@ onMounted(async () => {
     content.value = article.content
     date.value = article.date
     date_format.value = date.value.split("T")[0]
+    imageUrl.value = article.image
   } catch (err) {
     error.value = err.message
   } finally {
@@ -143,6 +144,7 @@ async function save() {
   max-width: 700px;
   margin: auto;
   padding: 2rem 1rem;
+  margin-top: 7vh;
 }
 
 input,

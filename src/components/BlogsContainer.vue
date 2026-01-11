@@ -17,26 +17,14 @@ const heroBackground = computed(() => {
 <template>
     <div class="Blog_Container">
         <section class="layout">
-            <div class="hero" v-if="props.article == undefined" :style="heroBackground">
-                <span class="badge">Blog</span>
-                <h1 class="logo" >Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠<br><span><s>(Y Pensamientos Intrusivos)</s></span></h1>
-                <p>
-                    Artículos sobre desarrollo web, proyectos personales
-                    y aprendizajes del día a día como desarrollador.
-                </p>
-                <div class="actions">
-                    <router-link to="/blogs" class="primary link">Ver Blogs</router-link>
-                    <router-link class="primary link" to="/article/new" v-if="isLogged">+ Nuevo Blog</router-link>
-                </div>
-            </div>
-            <div class="hero" v-else :style="heroBackground">
-                <span class="badge">Blog</span>
-                <h1 class="logo">{{ article.title }}</h1>
-                <p>{{ article.content.slice(0,130) }}...</p>
-                <div class="actions">
-                    <router-link :to="`/article/${article.id}`" class="primary link">Ver Blog</router-link>
-                </div>
-            </div>
+          <div class="hero" :style="heroBackground">
+              <span class="badge">Blog</span>
+              <h1 class="logo">{{ article?.title != undefined ? article.title : 'amongus' }}</h1>
+              <p>{{ article?.content.slice(0,130) }}...</p>
+              <div class="actions">
+                  <router-link :to="`/article/${article.id}`" class="primary link">Ver Blog</router-link>
+              </div>
+          </div>
         </section>
     </div>
 </template>
