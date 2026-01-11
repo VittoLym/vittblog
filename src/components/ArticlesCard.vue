@@ -15,7 +15,9 @@ const isAdmin = computed(() => {
   return !!localStorage.getItem("token")
 })
 const emit = defineEmits(["edit", "delete"])
-
+const titleColor = {
+  color:`${props.article.color_title}`
+}
 const heroBackground = computed(() => {
   if (!props.article?.image) return {
     backgroundImage: `url(${defaultImage})`,
@@ -54,7 +56,7 @@ function goArticle(event){
       <div class="body">
         <header class="card-header">
           <div class="info">
-            <h2 class="title">{{ article.title }}</h2>
+            <h2 class="title" :style="titleColor">{{ article.title }}</h2>
             <span class="owner">✍️ {{ article.owner_name }}</span>
             <small class="date">
               📅 {{ new Date(article.date).toLocaleDateString() }}

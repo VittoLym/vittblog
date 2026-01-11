@@ -78,7 +78,7 @@ function mobileState(){
         <nav class="sections">
           <router-link to="/">Home</router-link>
           <router-link to="/blogs">Blogs</router-link>
-          <a href="/#footer">Footer</a>
+          <router-link to="/article/new">Crear</router-link>
         </nav>
         <aside class="buttons">
           <nav class="nav" >

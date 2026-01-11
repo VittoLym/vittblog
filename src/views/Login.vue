@@ -67,7 +67,6 @@ async function onLogin() {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at top, #1b1b1b, #000);
   color: var(--text);
 }
 

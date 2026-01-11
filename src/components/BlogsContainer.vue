@@ -26,7 +26,7 @@ const heroBackground = computed(() => {
                 </p>
                 <div class="actions">
                     <router-link to="/blogs" class="primary link">Ver Blogs</router-link>
-                    <router-link class="link primary add" to="/article/new" v-if="isLogged">+ Nuevo Blog</router-link>
+                    <router-link class="primary link" to="/article/new" v-if="isLogged">+ Nuevo Blog</router-link>
                 </div>
             </div>
             <div class="hero" v-else :style="heroBackground">
@@ -128,6 +128,19 @@ const heroBackground = computed(() => {
 }
 .add{
   background: linear-gradient(135deg, #7aa2ff, #5f8dff);
+}
+.add::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255, 255, 255),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform .4s ease;
 }
 .primary {
   position: relative;

@@ -20,7 +20,7 @@ watch(articles, (newVal) => {
   interval = setInterval(() => {
     currentIndex.value =
       (currentIndex.value + VISIBLE) % newVal.length
-  }, 3000)
+  }, 4000)
 })
 onMounted(async () => {
   try {

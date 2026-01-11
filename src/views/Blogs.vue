@@ -2,9 +2,11 @@
 import { ref, onMounted,computed } from "vue"
 import ArticleCard from "../components/ArticlesCard.vue"
 import { refresh_token } from "../stores/auth"
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 import AddBlogMobile from "../components/AddBlogMobile.vue"
+import SkeletonBlog from "../components/SkeletonBlog.vue"
 const router = useRouter()
+const route = useRoute()
 const articles = ref([])
 const loading = ref(true)
 const error = ref(null)
@@ -19,6 +21,7 @@ onMounted(async () => {
   try {
     const res = await fetch("https://vittblog-backend-1.onrender.com/articles")
     articles.value = await res.json()
+    console.log(articles.value)
   } catch (err) {
     err.value = "Error cargando artículos"
   } finally {
@@ -49,7 +52,7 @@ async function deleteArticle(id) {
     return
   }
   articles.value = articles.value.filter(a => a.id !== id)
-  router.push('/')
+  router.push(`${route.path}`)
 }
 
 </script>
@@ -69,9 +72,8 @@ async function deleteArticle(id) {
       @click="goNew"
       />
     </header>
-    <div v-if="loading" class="loading">
-      <div class="spinner"></div>
-      <p>Cargando Blogs...</p>
+    <div v-if="loading" class="grid">
+      <SkeletonBlog/>
     </div>
     <p v-else-if="error" class="status error">{{ error }}</p>
     <div v-else-if="articles.length === 0" class="empty">
