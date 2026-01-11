@@ -26,6 +26,7 @@
                 <img src="../assets/Jotchua.jpg" alt="Un perrito muy amable" title="Un perrito muy amable" @click="goPortfolio">
                 <RouterLink to="/" v-if="route.path !== '/'" @click="onSelect">Home</RouterLink>
                 <router-link to="/article/new" v-if="isLogged" @click="onSelect"> + Nuevo Artículo</router-link>
+                <RouterLink to="/blogs" v-if="route.path !== '/blogs'" @click="onSelect">Ver Blogs</RouterLink>
                 <RouterLink to="/login" v-if="route.path !=='/login' && !isLogged" @click="onSelect">Login</RouterLink>
                 <RouterLink to="/login" v-if="isLogged && route.path !=='/login'" @click="onLogout">Logout</RouterLink>
             </aside>
@@ -44,7 +45,7 @@
   align-items: center;
   gap: 1.5rem;
   padding-top: 2rem;
-  z-index: 909;
+  z-index: 90;
   height: 100dvh;
 }
 .slide-enter-active,
@@ -58,6 +59,7 @@
   opacity: 0;
 }
 .options{
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     width: 100%;

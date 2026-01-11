@@ -1,42 +1,84 @@
 <script setup>
-  import { ref,watch } from "vue"
-  import { useRouter,useRoute } from "vue-router"
-  import { isLogged, logout } from "../src/stores/auth.js"
-  import BurgerIcon from "./components/BurgerIcon.vue"
-  import MenuMobile from "./components/MenuMobile.vue"
-  import LoginIcon from "./components/LoginIcon.vue"
-  import HomeIcon from "./components/HomeIcon.vue"
-  import LogoutIcon from "./components/LogoutIcon.vue"
-  const route = useRoute()
-  const router = useRouter()
-  const menuIsOpen = ref(false)
-  function onLogout() {
-    logout()
-    router.push("/login")
+import { ref,watch } from "vue"
+import { useRouter,useRoute } from "vue-router"
+import { isLogged, logout } from "../src/stores/auth.js"
+import BurgerIcon from "./components/BurgerIcon.vue"
+import MenuMobile from "./components/MenuMobile.vue"
+import LoginIcon from "./components/LoginIcon.vue"
+import HomeIcon from "./components/HomeIcon.vue"
+import LogoutIcon from "./components/LogoutIcon.vue"
+const route = useRoute()
+const router = useRouter()
+const menuIsOpen = ref(false)
+const isScrolling = ref(true) 
+let scrollTimeout = null
+const transitionName = ref("slide-right")
+
+watch(
+  () => route.fullPath,
+  (to, from) => {
+    transitionName.value = to.length > from.length
+      ? "slide-right"
+      : "slide-left"
   }
-  function goNew() {
-    router.push("/article/new")
+)
+
+const onScroll = (e) => {
+  if(e?.type == "mousemove"){
+    isScrolling.value = true
+    return
   }
-  
-  function mobileState(){
-    menuIsOpen.value = !menuIsOpen.value
-    watch(menuIsOpen, (open) => {
-      document.body.style.overflow = open ? "hidden" : ""
-    })
+  else if(e?.type =="mouseleave" ){
+    if (window.scrollY === 0) {
+      return
+    }
+    setTimeout(() => {isScrolling.value = false},1000)
   }
+  else{
+    isScrolling.value = true
+    clearTimeout(scrollTimeout)
+    scrollTimeout = setTimeout(() => {
+      if(menuIsOpen.value){
+        return
+      }
+      if (window.scrollY === 0) {
+        return
+      }
+      isScrolling.value = false
+    }, 2000)
+  }
+}
+function onLogout() {
+  logout()
+  router.push("/login")
+}
+function goNew() {
+  router.push("/article/new")
+}
+
+function mobileState(){
+  menuIsOpen.value = !menuIsOpen.value
+  watch(menuIsOpen, (open) => {
+    document.body.style.overflow = open ? "hidden" : ""
+    onScroll()
+  })
+}
+
+  window.addEventListener("scroll", onScroll, { passive: true })
 </script>
 
 <template>
-  <div class="main-layout">
-    <header class="header" id="home">
+  <div class="main-layout" >
+    <transition name="slide">
+      <header class="header"  v-if="isScrolling" @mousemove="onScroll" @mouseleave="onScroll">
       <div class="header-inner">
         <article class="main_header">
           <h1 class="logo">Vitt<span>.</span>Blog</h1>
         </article>
         <nav class="sections">
-          <a href="/">Home</a>
-          <a href="#posts">Blogs</a>
-          <a href="#footer">Footer</a>
+          <router-link to="/">Home</router-link>
+          <router-link to="/blogs">Blogs</router-link>
+          <a href="/#footer">Footer</a>
         </nav>
         <aside class="buttons">
           <nav class="nav" >
@@ -77,12 +119,16 @@
         v-model="menuIsOpen"
         />
       </div>
-    </header>
+      </header>
+    </transition>
     <MenuMobile :isOpen="menuIsOpen" @selectMenu="mobileState"/>
-    <main class="main">
-      <RouterView />
+    <main class="main"id="home">
+      <RouterView v-slot="{ Component }">
+        <transition :name="transitionName" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </RouterView>
     </main>
-
     <footer class="footer" id="footer">
       <p>
         © {{ new Date().getFullYear() }} Vitt —
@@ -100,10 +146,12 @@ html{
   --bg: #0e0e11;
   --bg-soft: #15151b;
   --bg-tr:#7c8bff1a;
+  --bg-tr2:rgba(255, 255, 255, 0.041);
   --text: #eaeaf0;
   --muted: #9a9aa3;
   --accent: #7c8cff;
   --negative: #ff6b6b;
+
 }
 
 * {
@@ -129,14 +177,30 @@ body {
   color: var(--text);
   overflow: auto;
 }
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
 .header {
-  height: 20dvh;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 15dvh;
   width: 80vw;
   padding: 0 1rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  z-index: 100;
 }
+
 .header-inner {
   margin: auto;
   padding: 0;
@@ -144,21 +208,30 @@ body {
   justify-content: space-between;
   align-items: center;
   height: min-content;
-  background: var(--bg-tr);
-  padding: .5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  padding: .5rem 1rem;
   border-radius: 45px;
+  background: var(--bg-tr2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 .main_header{
   display: flex;
   flex-direction: row;
+  width: 27vw;
 }
 .main_header img{
   border-radius: 100%;
   margin-right: .5rem;
 }
 .sections{
-  width: 25vw;
+  width: 26vw;
   display: flex;
   justify-content: space-between;
 }
@@ -176,6 +249,8 @@ body {
   flex-direction: row;
   height: 60%;
   justify-content: end;
+  margin-right: .5rem;
+  width: 26vw;
 }
 
 .logo {
@@ -355,8 +430,8 @@ body {
     transform: translate(2px ,2px);
   }
 .main {
-  flex: 1;
-  width: 100%;
+  position: relative;
+  overflow-x: hidden;
 }
 .footer {
   border-top: 1px solid #1f1f27;
@@ -403,8 +478,60 @@ body {
   background: rgba(255, 107, 107, 0.247);
   color: var(--text);
 }
-.main{
-  background-color: var(--bg-soft);
+.slide-left-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-left-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-left-enter-active {
+  transition: all .35s ease;
+}
+
+.slide-left-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-left-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-left-leave-active {
+  transition: all .35s ease;
+}
+.slide-right-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-right-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-right-enter-active {
+  transition: all .35s ease;
+}
+
+/* salir */
+.slide-right-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-right-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-right-leave-active {
+  transition: all .35s ease;
 }
 @media (max-width: 768px) {
   .header{
@@ -471,4 +598,5 @@ body {
     margin: 0;
   }
 }
+
 </style>

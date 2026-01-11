@@ -13,8 +13,8 @@
                     y aprendizajes del día a día como desarrollador.
                 </p>
                 <div class="actions">
-                    <a href="#posts" class="primary">Ver Blogs</a>
-                    <router-link class="primary" to="/article/new" v-if="isLogged">+ Nuevo Blog</router-link>
+                    <router-link to="/blogs" class="primary link">Ver Blogs</router-link>
+                    <router-link class="link primary add" to="/article/new" v-if="isLogged">+ Nuevo Blog</router-link>
                 </div>
             </div>
         </section>
@@ -22,30 +22,15 @@
 </template>
 <style scoped>
 .Blog_Container{
-    height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    border-bottom: 1px solid #1f1f27;
-    background-color: var(--bg);
-    background-image:
-    linear-gradient(
-        rgba(255,255,255,0.03) 1px,
-        transparent 1px
-    ),
-    linear-gradient(
-        90deg,
-        rgba(255,255,255,0.03) 1px,
-        transparent 1px
-    );
-    background-size: 40px 40px;
+    justify-content: center;
 }
 .layout{
     display: flex;
-    padding:2rem 1rem;
+    padding:0rem 1rem;
     justify-content: center;
     align-items: center ;
-    margin-top: 15vh;
 }
 .presentation{
     display: flex;
@@ -67,12 +52,17 @@
 }
 .hero {
   max-width: 620px;
+  background-color: var(--bg-tr2);
+  border-radius: 45px;
+  padding: 2rem 1.5rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15)
 }
 
 .badge {
   display: inline-block;
   padding: .25rem .7rem;
-  border-radius: 999px;
+  border-radius: 45px;
   font-size: .7rem;
   letter-spacing: .05em;
   text-transform: uppercase;
@@ -97,7 +87,9 @@
   display: flex;
   gap: 1rem;
 }
-
+.add{
+  background: linear-gradient(135deg, #7aa2ff, #5f8dff);
+}
 .primary {
   position: relative;
   overflow: hidden;
@@ -105,8 +97,11 @@
   border-radius: 10px;
   font-weight: 600;
   padding: .7rem 1.4rem;
-  background: rgba(255, 255, 255, 0.03);
   text-decoration: none;
+  width: max-content;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .primary::before {
@@ -126,29 +121,37 @@
 .primary:hover::before {
   transform: translateX(100%);
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .layout {
     width: 100%;
     padding: 2rem 1rem;
-    margin-top:10dvh;
+    padding-bottom: 0;
   }
   .hero h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
   .hero p {
-    font-size: .95rem;
+    width: 100%;
+    font-size: .8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-
+.logo span s{
+  font-size: .8rem;
+}
   .actions {
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
   .primary {
-    width: 100%;
     text-align: center;
+    border-radius: 45px;
+    width: 150px;
   }
 }
 

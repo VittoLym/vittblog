@@ -4,6 +4,7 @@ import EditArticle from "../views/EditArticle.vue"
 import Login from "../views/Login.vue"
 import NewArticle from "../views/NewArticle.vue"
 import Article from "../views/Article.vue"
+import Blogs from "../views/Blogs.vue"
 
 const routes = [
   {
@@ -27,6 +28,10 @@ const routes = [
   {
     path:"/article/:id",
     component: Article,
+  },
+  {
+    path:"/blogs",
+    component:Blogs
   }
 ]
 const router = createRouter({

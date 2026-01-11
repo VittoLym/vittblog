@@ -138,10 +138,10 @@ function goArticle(event){
 .card-header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1rem;
   padding: 0.3rem .5rem ;
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
   background: linear-gradient(180deg, #15151b, #101015);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #1f1f27;
@@ -239,6 +239,7 @@ function goArticle(event){
   }
   .body .card-header{
     overflow: hidden;
+    border-radius: 0 0 10px 10px;
   }
   .body .card-header .title{
     white-space: nowrap;
