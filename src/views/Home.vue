@@ -72,12 +72,10 @@ onUnmounted(() => clearInterval(interval))
   grid-column: 1 / -1;
 }
 .collection{
-  overflow: auto;
   height: max-content;
   margin-top: 120px;
   margin-bottom: 70px;
   width: 80vw;
-  height: 650px;
   overflow: hidden;
 }
 .collection-inner {

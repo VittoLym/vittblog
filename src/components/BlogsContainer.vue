@@ -45,6 +45,7 @@ const heroBackground = computed(() => {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: 100%;
 }
 .layout{
     display: flex;
