@@ -31,7 +31,7 @@ const heroBackground = computed(() => {
             </div>
             <div class="hero" v-else :style="heroBackground">
                 <span class="badge">Blog</span>
-                <h1 class="logo">{{ article.title }}</h1>
+                <h1 class="logo">{{ article.title }} p</h1>
                 <p>{{ article.content.slice(0,130) }}...</p>
                 <div class="actions">
                     <router-link :to="`/article/${article.id}`" class="primary link">Ver Blog</router-link>
@@ -131,7 +131,6 @@ const heroBackground = computed(() => {
 }
 .add::before {
   content: "";
-  position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,

@@ -100,7 +100,7 @@ onUnmounted(() => clearInterval(interval))
   position: absolute;
 }
 .blog-fade-enter-active:nth-child(2) {
-  transition-delay: 0.1s;
+  transition-delay: 0.05s;
 }
 .blog-fade-enter-from {
   opacity: 0;
