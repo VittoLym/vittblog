@@ -68,10 +68,6 @@ function goArticle(event){
             <button class="icon delete" @click="onDelete">🗑️</button>
           </div>
         </header>
-        <button class="read" @click="toArticle">
-          Leer más →
-        </button>
-
         <Transition name="error">
           <p
             v-if="isError && isError.id === article.id"
@@ -116,9 +112,9 @@ function goArticle(event){
   width: max-content;
 }
 .card {
-  border-radius: 10px;
+  border-radius: 45px;
   transition: transform .25s ease;
-  height: 33vh;
+  height: 400px;
   overflow: hidden;
   background-color: var(--bg-tr2);
   backdrop-filter: blur(12px);
@@ -136,7 +132,7 @@ function goArticle(event){
     rgba(0,0,0,.35),
     rgba(0,0,0,.1)
   );
-  border-radius: 10px;
+  border-radius: 45px;
   z-index: 0;
 }
 
@@ -146,6 +142,7 @@ function goArticle(event){
 }
 .card:hover {
   transform: translateY(-6px);
+  cursor: pointer;
 }
 
 /* Header */
@@ -195,7 +192,6 @@ function goArticle(event){
   border: none;
   cursor: pointer;
   font-size: .9rem;
-  opacity: .45;
   transition: opacity .2s ease, transform .2s ease;
 }
 
@@ -249,7 +245,11 @@ function goArticle(event){
     padding: 1rem .5rem;
   }
   .card{
-    height: 300px;
+    height: 350px;
+    border-radius: 15px;
+  }
+  .card::before{
+    border-radius: 15px;
   }
   .content{
     margin: 0;
@@ -274,13 +274,13 @@ function goArticle(event){
   }
  .title{
     width: 100%;
-    margin-bottom: .5rem;
+    margin-bottom: 2rem;
     height: 70px;
   } 
   .info{
     width: 100%;
+    height: 250px;
     overflow: hidden;
-    height: max-content;
     display: flex;
     flex-direction: column;
     justify-content: end;

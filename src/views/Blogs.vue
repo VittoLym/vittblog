@@ -115,6 +115,8 @@ async function deleteArticle(id) {
   position: relative;
   min-height: 45dvh;
   overflow: hidden;
+  margin: 2rem 0 ;
+  padding: 1rem 0;
 }
 .grid > :nth-child(3n + 1) {
   grid-column: 1 / -1;
@@ -138,6 +140,7 @@ async function deleteArticle(id) {
   align-items: center;
   width: 80vw;
   margin-top: 10vh;
+  border-bottom: 1px solid #1f1f27;
 }
 
 .title {
