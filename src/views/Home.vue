@@ -124,7 +124,7 @@ onUnmounted(() => clearInterval(interval))
 @media (max-width: 768px) {
   .collection{
     width: 100vw;
-    height: 80dvh;
+    height: max-content;
   }
   .collection-inner{
     gap: .5rem;
