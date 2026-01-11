@@ -63,7 +63,7 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
-  min-height: 45dvh;
+  min-height: 45vh;
   overflow: hidden;
   width: 80vw;
   height: 45vw;
@@ -77,7 +77,7 @@ onUnmounted(() => clearInterval(interval))
   margin-top: 120px;
   margin-bottom: 70px;
   width: 80vw;
-  height: 45vw;
+  min-height: 45vh;
   overflow: hidden;
 }
 .collection-inner {
@@ -86,7 +86,7 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
-  min-height: 80dvh;
+  height: 570px;
   overflow: hidden;
 }
 .collection-inner > :nth-child(3n + 1) {
