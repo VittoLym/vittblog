@@ -77,7 +77,7 @@ onUnmounted(() => clearInterval(interval))
   margin-top: 120px;
   margin-bottom: 70px;
   width: 80vw;
-  min-height: 45vh;
+  height: 650px;
   overflow: hidden;
 }
 .collection-inner {
@@ -86,14 +86,13 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
-  height: 650px;
   overflow: hidden;
 }
 .collection-inner > :nth-child(3n + 1) {
   grid-column: 1 / -1;
 }
 .blog-fade-enter-active {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 .blog-fade-leave-active{
