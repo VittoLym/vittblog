@@ -86,7 +86,7 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
-  min-height: 45dvh;
+  min-height: 80dvh;
   overflow: hidden;
 }
 .collection-inner > :nth-child(3n + 1) {
