@@ -52,11 +52,6 @@ const heroBackground = computed(() => {
     justify-content: center;
     align-items: center ;
 }
-.presentation{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .logo{
     font-size: 1.5rem;
     padding: .25rem 0;

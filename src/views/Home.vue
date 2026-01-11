@@ -89,7 +89,7 @@ onUnmounted(() => clearInterval(interval))
   min-height: 45dvh;
   overflow: hidden;
 }
-.collection-inner > :first-child {
+.collection-inner > :nth-child(3n + 1) {
   grid-column: 1 / -1;
 }
 .blog-fade-enter-active {
@@ -99,12 +99,12 @@ onUnmounted(() => clearInterval(interval))
 .blog-fade-leave-active{
   position: absolute;
 }
-.blog-fade-enter-active:nth-child(3) {
+.blog-fade-enter-active:nth-child(2) {
   transition-delay: 0.1s;
 }
 .blog-fade-enter-from {
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(-20px);
 }
 
 .blog-fade-enter-to {

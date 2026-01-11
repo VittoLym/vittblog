@@ -1,22 +1,35 @@
 <script setup>
-import { computed} from 'vue';
+import { computed } from 'vue';
 import { useRouter,useRoute } from "vue-router"
 const route = useRoute()
 const router = useRouter()
-const defaultImage =
-  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80"
-const isMobile = () => {
-  return window.innerWidth <= 768
-}
 const props = defineProps({
   article: Object,
   isError: Object
 })
+const defaultImage ="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80"
+const isMobile = () => {
+  return window.innerWidth <= 768
+}
 const isAdmin = computed(() => {
   return !!localStorage.getItem("token")
 })
 const emit = defineEmits(["edit", "delete"])
 
+const heroBackground = computed(() => {
+  if (!props.article?.image) return {
+    backgroundImage: `url(${defaultImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }
+  return {
+    backgroundImage: `url(${props.article.image})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }
+})
 function onDelete() {
   if (confirm("¿Eliminar este artículo?")) {
     emit("delete", props.article.id)
@@ -36,14 +49,8 @@ function goArticle(event){
 </script>
 
 <template>
-  <article class="card" @click="goArticle">
+  <article class="card" @click="goArticle" :style="heroBackground">
     <div class="layout">
-      <div class="thumb">
-        <img
-          :src="article.image || defaultImage"
-          alt="Cover"
-        />
-      </div>
       <div class="body">
         <header class="card-header">
           <div class="info">
@@ -52,19 +59,15 @@ function goArticle(event){
             <small class="date">
               📅 {{ new Date(article.date).toLocaleDateString() }}
             </small>
+            <p class="content">
+              {{ article.content.slice(0, 120) }}…
+            </p>
           </div>
-
           <div class="actions" v-if="isAdmin">
             <button class="icon edit" @click="emit('edit', article)">✏️</button>
             <button class="icon delete" @click="onDelete">🗑️</button>
           </div>
         </header>
-
-
-        <p class="content">
-          {{ article.content.slice(0, 180) }}…
-        </p>
-
         <button class="read" @click="toArticle">
           Leer más →
         </button>
@@ -90,16 +93,6 @@ function goArticle(event){
   padding: 1.5rem;
 }
 
-/* Imagen */
-.thumb {
-  width: 200px;
-  height: 100%;
-  flex-shrink: 0;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #111;
-}
-
 .thumb img {
   width: 100%;
   height: 100%;
@@ -111,7 +104,7 @@ function goArticle(event){
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
 }
 
 /* Responsive */
@@ -123,13 +116,34 @@ function goArticle(event){
   width: max-content;
 }
 .card {
-  background-color: var(--bg);
   border-radius: 10px;
   transition: transform .25s ease;
   height: 33vh;
   overflow: hidden;
+  background-color: var(--bg-tr2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  color: white;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.35),
+    rgba(0,0,0,.1)
+  );
+  border-radius: 10px;
+  z-index: 0;
 }
 
+.card > * {
+  position: relative;
+  z-index: 1;
+}
 .card:hover {
   transform: translateY(-6px);
 }
@@ -142,9 +156,19 @@ function goArticle(event){
   gap: 1rem;
   padding: 0.3rem .5rem ;
   border-radius: 10px;
-  background: linear-gradient(180deg, #15151b, #101015);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid #1f1f27;
+}
+.hero{
+  width: 100%;
+  border-radius: 45px;
+  padding: 2rem 1.5rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  color: white;
+  height: 45dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
 }
 
 .title {
@@ -222,37 +246,53 @@ function goArticle(event){
 @media (max-width: 768px) {
   .layout {
     flex-direction: column;
+    padding: 1rem .5rem;
   }
   .card{
     height: 300px;
   }
-  .thumb {
-    width: 100%;
-    height: 160px;
-    border-radius: 10px 10px 0 0;
-  }
   .content{
-    display: none;
+    margin: 0;
+    height: 10vh;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0;
   }
   .body{
-    height: 10vh;
+    height: 80%;
   }
-  .body .card-header{
+ .card-header{
     overflow: hidden;
-    border-radius: 0 0 10px 10px;
-  }
-  .body .card-header .title{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    border-radius: 10px;
+    height: 100%;
     width: 100%;
-  } 
-  .card-header .info{
-    width: 70%;
-    overflow: hidden;
-  }
-  .card-header .actions{
+    flex-direction: row;
     justify-content: end;
+    flex-wrap: wrap;
+    padding: 0;
+    margin-top: 10px;
+  }
+ .title{
+    width: 100%;
+    margin-bottom: .5rem;
+    height: 70px;
+  } 
+  .info{
+    width: 100%;
+    overflow: hidden;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+  .actions{
+    width: 100%;
+    justify-content: center;
+    height: 5vh;
+  }
+   .icon{
+    height: 50px;
+    width: 70px;
   }
   .read{
     display: none;

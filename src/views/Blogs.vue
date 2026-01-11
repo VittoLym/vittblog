@@ -77,7 +77,6 @@ async function deleteArticle(id) {
     <div v-else-if="articles.length === 0" class="empty">
       <h2>📭 No hay artículos todavía</h2>
       <p>Estoy escribiendo algo bueno…</p>
-
       <button v-if="isAdmin" class="new big" @click="goNew">
         Crear primer artículo
       </button>
@@ -110,12 +109,16 @@ async function deleteArticle(id) {
 
 .grid {
   display: grid;
-  gap: 1.5rem;
-  padding: 1.5rem 0;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
   width: 80vw;
-  border-top: 1px solid #1f1f27;
+  position: relative;
+  min-height: 45dvh;
+  overflow: hidden;
 }
-
+.grid > :nth-child(3n + 1) {
+  grid-column: 1 / -1;
+}
 .status {
   opacity: 0.7;
 }
