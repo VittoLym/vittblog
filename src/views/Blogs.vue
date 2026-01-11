@@ -20,7 +20,7 @@ onMounted(async () => {
     const res = await fetch("https://vittblog-backend-1.onrender.com/articles")
     articles.value = await res.json()
   } catch (err) {
-    error.value = "Error cargando artículos"
+    err.value = "Error cargando artículos"
   } finally {
     loading.value = false
   }
@@ -105,6 +105,7 @@ async function deleteArticle(id) {
   align-items: center;
   justify-content: start;
   min-height: 100dvh;
+  width: 100%;
 }
 
 .grid {

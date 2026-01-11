@@ -194,7 +194,6 @@ body {
   transform: translateX(-50%);
   height: 15dvh;
   width: 80vw;
-  padding: 0 1rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -432,6 +431,8 @@ body {
 .main {
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
 }
 .footer {
   border-top: 1px solid #1f1f27;

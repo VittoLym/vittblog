@@ -1,13 +1,25 @@
 <script setup>
-    import { isLogged } from "../stores/auth.js"
-
+import { computed } from "vue"
+import { isLogged } from "../stores/auth.js"
+const props = defineProps({article:Object})
+const heroBackground = computed(() => {
+  if (!props.article?.image) return {
+    backgroundColor: "rgba(101, 34, 153, 0.219)"
+  }
+  return {
+    backgroundImage: `url(${props.article.image})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }
+})
 </script>
 <template>
     <div class="Blog_Container">
         <section class="layout">
-            <div class="hero">
+            <div class="hero" v-if="props.article == undefined" :style="heroBackground">
                 <span class="badge">Blog</span>
-                <h1 class="logo">Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠<br><span><s>(Y Pensamientos Intrusivos)</s></span></h1>
+                <h1 class="logo" >Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠<br><span><s>(Y Pensamientos Intrusivos)</s></span></h1>
                 <p>
                     Artículos sobre desarrollo web, proyectos personales
                     y aprendizajes del día a día como desarrollador.
@@ -15,6 +27,14 @@
                 <div class="actions">
                     <router-link to="/blogs" class="primary link">Ver Blogs</router-link>
                     <router-link class="link primary add" to="/article/new" v-if="isLogged">+ Nuevo Blog</router-link>
+                </div>
+            </div>
+            <div class="hero" v-else :style="heroBackground">
+                <span class="badge">Blog</span>
+                <h1 class="logo">{{ article.title }}</h1>
+                <p>{{ article.content.slice(0,180) }}...</p>
+                <div class="actions">
+                    <router-link :to="`/article/${article.id}`" class="primary link">Ver Blog</router-link>
                 </div>
             </div>
         </section>
@@ -28,7 +48,7 @@
 }
 .layout{
     display: flex;
-    padding:0rem 1rem;
+    padding:0;
     justify-content: center;
     align-items: center ;
 }
@@ -51,14 +71,31 @@
     font-size:1rem;
 }
 .hero {
-  max-width: 620px;
-  background-color: var(--bg-tr2);
+  width: 100%;
   border-radius: 45px;
   padding: 2rem 1.5rem;
   backdrop-filter: blur(3px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15)
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  color: white;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.35),
+    rgba(0,0,0,.1)
+  );
+  border-radius: 45px;
+  z-index: 0;
 }
 
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
 .badge {
   display: inline-block;
   padding: .25rem .7rem;
@@ -81,6 +118,10 @@
   font-size: 1rem;
   opacity: .8;
   margin-bottom: 1.6rem;
+  text-overflow: ellipsis;
+  height: 100px;
+  width: 400px;
+  overflow: hidden;
 }
 
 .actions {
