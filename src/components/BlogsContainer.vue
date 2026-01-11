@@ -32,7 +32,7 @@ const heroBackground = computed(() => {
             <div class="hero" v-else :style="heroBackground">
                 <span class="badge">Blog</span>
                 <h1 class="logo">{{ article.title }}</h1>
-                <p>{{ article.content.slice(0,180) }}...</p>
+                <p>{{ article.content.slice(0,130) }}...</p>
                 <div class="actions">
                     <router-link :to="`/article/${article.id}`" class="primary link">Ver Blog</router-link>
                 </div>
@@ -77,6 +77,11 @@ const heroBackground = computed(() => {
   backdrop-filter: blur(3px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   color: white;
+  height: 45dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
 }
 .hero::before {
   content: "";
@@ -110,18 +115,16 @@ const heroBackground = computed(() => {
 
 .hero h2 {
   line-height: 1.1;
-  margin-bottom: 1rem;
-  margin-top: .5rem;
 }
 
 .hero p {
   font-size: 1rem;
   opacity: .8;
-  margin-bottom: 1.6rem;
   text-overflow: ellipsis;
-  height: 100px;
+  height: 70px;
   width: 400px;
   overflow: hidden;
+  margin: 0;
 }
 
 .actions {
@@ -164,12 +167,32 @@ const heroBackground = computed(() => {
 }
 @media (max-width: 768px) {
   .layout {
-    width: 100%;
-    padding: 2rem 1rem;
+    padding: 1rem .5rem;
     padding-bottom: 0;
+    justify-content: start;
+    max-width: 100vw;
+  }
+  .hero{
+    max-width: 100vw;
+    max-height: 300px;
+    padding: 1rem .5rem;
+    border-radius: 25px;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,.75),
+      rgba(0,0,0,.35),
+      rgba(0,0,0,.1)
+    );
+    border-radius: 25px;
+    z-index: 0;
   }
   .hero h1 {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -179,9 +202,9 @@ const heroBackground = computed(() => {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-.logo span s{
+  .logo span s{
   font-size: .8rem;
-}
+  }
   .actions {
     flex-wrap: wrap;
     align-items: center;
@@ -191,8 +214,9 @@ const heroBackground = computed(() => {
 
   .primary {
     text-align: center;
-    border-radius: 45px;
-    width: 150px;
+    border-radius: 25px;
+    width: 130px;
+    padding: 0;
   }
 }
 

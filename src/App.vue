@@ -540,8 +540,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 0 .5rem;
+    width: 90vw;
     z-index: 100;
   }
   .header-inner {
