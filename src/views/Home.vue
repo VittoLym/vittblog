@@ -93,7 +93,7 @@ onUnmounted(() => clearInterval(interval))
   grid-column: 1 / -1;
 }
 .blog-fade-enter-active {
-  transition: all 0.25s ease;
+  transition: all 0.5s ease;
 }
 
 .blog-fade-leave-active{
@@ -104,12 +104,12 @@ onUnmounted(() => clearInterval(interval))
 }
 .blog-fade-enter-from {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateX(20px);
 }
 
 .blog-fade-enter-to {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 .blog-fade-leave-from {
