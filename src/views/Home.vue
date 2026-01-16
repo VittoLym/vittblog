@@ -133,16 +133,6 @@ onUnmounted(() => clearInterval(interval))
   opacity: 0;
   transform: translateX(20px);
 }
-@media (max-width: 768px) {
-  .collection{
-    width: 100vw;
-    height: max-content;
-  }
-  .collection-inner{
-    gap: .5rem;
-  }
-}
-
 .layout{
     display: flex;
     padding:0;
@@ -272,6 +262,14 @@ onUnmounted(() => clearInterval(interval))
   transform: translateX(100%);
 }
 @media (max-width: 768px) {
+  .collection{
+    width: 100vw;
+    height: max-content;
+  }
+  .collection-inner{
+    gap: .3rem;
+    height: 650px;
+  }
   .layout {
     padding: 1rem .5rem;
     padding-bottom: 0;
