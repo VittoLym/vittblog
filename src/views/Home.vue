@@ -44,6 +44,11 @@ onUnmounted(() => clearInterval(interval))
   </div>
   <div class="collection " v-else>
     <TransitionGroup name="blog-fade" tag="div" class="collection-inner">
+      <BlogsContainer
+        v-for="article in visibleArticles"
+        :key="article.id"
+        :article="article"
+      />
       <section class="layout">
         <div class="hero">
             <span class="badge">Blog</span>
@@ -58,11 +63,6 @@ onUnmounted(() => clearInterval(interval))
             </div>
         </div>
       </section>
-      <BlogsContainer
-        v-for="article in visibleArticles"
-        :key="article.id"
-        :article="article"
-      />
     </TransitionGroup>
   </div>
 </template>
@@ -99,7 +99,7 @@ onUnmounted(() => clearInterval(interval))
   position: relative;
   overflow: hidden;
 }
-.collection-inner > :nth-child(3n + 1) {
+.collection-inner > :nth-child(3n + 3) {
   grid-column: 1 / -1;
 }
 .blog-fade-enter-active {
