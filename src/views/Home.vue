@@ -21,13 +21,16 @@ onMounted(async () => {
 
 const visibleArticles = computed(() => {
   if (!articles.value.length) return []
-  const newarray =  Array.from({ length: VISIBLE }, (_, i) =>
-    articles.value[(currentIndex.value + i) % articles.value.length]
-  )
-  return newarray
+  const result = []
+  for (let i = 0; i < VISIBLE; i++) {
+    const index = (currentIndex.value + i) % articles.value.length
+    result.push(articles.value[index])
+  }
+  return result
 })
 watch(articles, (newVal) => {
   if (!newVal.length) return
+  if (interval) clearInterval(interval)
 
   interval = setInterval(() => {
     currentIndex.value =
@@ -60,7 +63,7 @@ onUnmounted(() => clearInterval(interval))
         </div>
       </section>
       <BlogsContainer
-        v-for="article in visibleArticles"
+        v-for="article in visibleArticles.slice(0,2)"
         :key="article.id"
         :article="article"
       />
@@ -86,7 +89,6 @@ onUnmounted(() => clearInterval(interval))
   grid-column: 1 / -1;
 }
 .collection{
-  height: max-content;
   margin-top: 120px;
   margin-bottom: 70px;
   width: 80vw;
@@ -98,7 +100,7 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
-  height: 570px;
+  max-height: 570px;
   overflow: hidden;
 }
 .collection-inner > :nth-child(3n + 1) {
@@ -107,7 +109,6 @@ onUnmounted(() => clearInterval(interval))
 .blog-fade-enter-active {
   transition: all .3s ease;
 }
-
 .blog-fade-leave-active{
   transition: all .2s ease;
 }
@@ -264,11 +265,13 @@ onUnmounted(() => clearInterval(interval))
 @media (max-width: 768px) {
   .collection{
     width: 100vw;
-    height: max-content;
+    overflow: hidden;
   }
   .collection-inner{
     gap: .3rem;
-    height: 650px;
+    max-height: 650px;
+    height: 640px;
+    overflow: hidden;
   }
   .layout {
     padding: 1rem .5rem;
