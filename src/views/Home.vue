@@ -7,21 +7,6 @@ const loading = ref(false)
 const currentIndex = ref(0)
 const VISIBLE = 2
 let interval
-const visibleArticles = computed(() => {
-  if (!articles.value.length) return []
-
-  return Array.from({ length: VISIBLE }, (_, i) =>
-    articles.value[(currentIndex.value + i) % articles.value.length]
-  )
-})
-watch(articles, (newVal) => {
-  if (!newVal.length) return
-
-  interval = setInterval(() => {
-    currentIndex.value =
-      (currentIndex.value + VISIBLE) % newVal.length
-  }, 4000)
-})
 onMounted(async () => {
   try {
     loading.value = true
@@ -32,6 +17,22 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
+})
+
+const visibleArticles = computed(() => {
+  if (!articles.value.length) return []
+  const newarray =  Array.from({ length: VISIBLE }, (_, i) =>
+    articles.value[(currentIndex.value + i) % articles.value.length]
+  )
+  return newarray
+})
+watch(articles, (newVal) => {
+  if (!newVal.length) return
+
+  interval = setInterval(() => {
+    currentIndex.value =
+      (currentIndex.value + VISIBLE) % newVal.length
+  }, 5000)
 })
 onUnmounted(() => clearInterval(interval))
 </script>
@@ -44,11 +45,6 @@ onUnmounted(() => clearInterval(interval))
   </div>
   <div class="collection " v-else>
     <TransitionGroup name="blog-fade" tag="div" class="collection-inner">
-      <BlogsContainer
-        v-for="article in visibleArticles"
-        :key="article.id"
-        :article="article"
-      />
       <section class="layout">
         <div class="hero">
             <span class="badge">Blog</span>
@@ -63,6 +59,11 @@ onUnmounted(() => clearInterval(interval))
             </div>
         </div>
       </section>
+      <BlogsContainer
+        v-for="article in visibleArticles"
+        :key="article.id"
+        :article="article"
+      />
     </TransitionGroup>
   </div>
 </template>
@@ -97,20 +98,21 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
+  height: 570px;
   overflow: hidden;
 }
-.collection-inner > :nth-child(3n + 3) {
+.collection-inner > :nth-child(3n + 1) {
   grid-column: 1 / -1;
 }
 .blog-fade-enter-active {
-  transition: all 0.3s ease;
+  transition: all .3s ease;
 }
 
 .blog-fade-leave-active{
-  position: absolute;
+  transition: all .2s ease;
 }
 .blog-fade-enter-active:nth-child(2) {
-  transition-delay: 0.05s;
+  transition-delay: 0.1s;
 }
 .blog-fade-enter-from {
   opacity: 0;
@@ -124,12 +126,12 @@ onUnmounted(() => clearInterval(interval))
 
 .blog-fade-leave-from {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 .blog-fade-leave-to {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateX(20px);
 }
 @media (max-width: 768px) {
   .collection{
