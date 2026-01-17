@@ -1,6 +1,7 @@
 <script setup>
-import { onBeforeMount,ref,computed,onMounted } from "vue"
+import { ref,computed,onMounted } from "vue"
 import { useRouter,useRoute } from "vue-router"
+import { useHead } from "@vueuse/head"
 const route = useRoute()
 const router = useRouter()
 const id = route.params.id
@@ -24,7 +25,8 @@ const backgroundStyle = computed(() => ({
   backgroundSize: "cover",
   backgroundPosition: "center",
 }))
-onBeforeMount(async () => {
+onMounted(async() => {
+  
   try {
     isLoading.value = true
     imageLoaded.value = false
@@ -44,8 +46,15 @@ onBeforeMount(async () => {
   } catch (err) {
       console.log(err)
   }
-})
-onMounted(() => {
+  useHead({
+    title:  `${title.value}`,
+    meta: [
+      {
+        name: "description",
+        content: `${content.value} | ${owner.value} | ${date.value}`
+      }
+    ]
+  })
   window.scrollTo({
     top: 0,
     left: 0,

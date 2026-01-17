@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted,computed } from "vue"
+import { useHead } from "@vueuse/head"
 import ArticleCard from "../components/ArticlesCard.vue"
 import { refresh_token } from "../stores/auth"
 import { useRouter, useRoute } from "vue-router"
@@ -17,11 +18,19 @@ const isAdmin = computed(() => {
 function goNew() {
   router.push("/article/new")
 }
+useHead({
+  title:  `Blogs | Vitt Blogs`,
+  meta: [
+    {
+      name: "description",
+      content: `Look all Blogs`
+    }
+  ]
+})
 onMounted(async () => {
   try {
     const res = await fetch("https://vittblog-backend-1.onrender.com/articles")
     articles.value = await res.json()
-    console.log(articles.value)
   } catch (err) {
     err.value = "Error cargando artículos"
   } finally {

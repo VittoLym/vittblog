@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted,ref,computed,watch,onUnmounted } from "vue";
+import { useHead } from "@vueuse/head"
 import SkeletonBlog from "../components/SkeletonBlog.vue";
 import BlogsContainer from "../components/BlogsContainer.vue"
 const articles = ref([])
@@ -7,6 +8,15 @@ const loading = ref(false)
 const currentIndex = ref(0)
 const VISIBLE = 2
 let interval
+useHead({
+  title:  "Vitt Blog | Desarrollo & Tecnología",
+  meta: [
+    {
+      name: "description",
+      content: "Create Blog | Vitt Blog"
+    }
+  ]
+})
 onMounted(async () => {
   try {
     loading.value = true
@@ -100,7 +110,8 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
-  max-height: 570px;
+  max-height: 580px;
+  height: 580px;
   overflow: hidden;
 }
 .collection-inner > :nth-child(3n + 1) {

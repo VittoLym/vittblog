@@ -24,7 +24,7 @@ useHead({
   meta: [
     {
       name: "description",
-      content: "no info yet"
+      content: "Create Blog | Vitt Blog"
     }
   ]
 })

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router"
+import { useHead } from "@vueuse/head"
 import { login } from "../stores/auth"
 
 const username = ref("")
@@ -32,6 +33,16 @@ async function onLogin() {
     error.value = "Server error"
   }
 }
+
+useHead({
+  title:  `Login | Vitt Blog`,
+  meta: [
+    {
+      name: "description",
+      content: `Login to see all blogs`
+    }
+  ]
+})
 </script>
 <template>
   <div class="login-page">
