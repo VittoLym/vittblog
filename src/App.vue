@@ -150,7 +150,7 @@ html{
 :root {
   --bg: #0e0e11;
   --bg-soft: #15151b;
-  --bg-tr:#7c8bff1a;
+  --bg-tr:#7c8bff69;
   --bg-tr2:rgba(255, 255, 255, 0.041);
   --text: #eaeaf0;
   --muted: #9a9aa3;
@@ -293,7 +293,7 @@ body {
   font-size: .9rem;
   font-weight: 500;
   border: none;
-  border-radius: 45px;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all .2s ease;
   background: var(--bg-tr2);
@@ -373,7 +373,7 @@ body {
   position: relative;
   background: linear-gradient(135deg, #7aa2ff, #5f8dff);
   border: none;
-  border-radius: 45px;
+  border-radius: 1rem;
   cursor: pointer;
   color: var(--text);
   font-size: .9rem;
@@ -473,7 +473,7 @@ body {
   font-size: .9rem;
   font-weight: 500;
   cursor: pointer;
-  border-radius: 45px;
+  border-radius: 1rem;
   transition: all .2s ease;
   background: rgba(255, 255, 255, 0.03);
   overflow: hidden;

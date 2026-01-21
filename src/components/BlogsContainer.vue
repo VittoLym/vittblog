@@ -37,7 +37,6 @@ const heroBackground = computed(() => {
 }
 .layout{
     display: flex;
-
     padding:0;
     justify-content: center;
     align-items: center ;
@@ -61,7 +60,7 @@ const heroBackground = computed(() => {
   backdrop-filter: blur(3px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   color: white;
-  height: 300px;
+  height: 250px;
   display: flex;
   justify-content: space-between;
   align-items: end;

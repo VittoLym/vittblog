@@ -6,6 +6,10 @@ const props = defineProps({
     article:Object,
     isError: Object
 })
+const isHover = ref(false)
+const titleStyle = computed(() => ({
+  color: isHover.value ? props.article?.color_title : "#eaeaf0"
+}))
 const heroBackground = computed(() => {
   if (!props.article?.image) return {
     backgroundImage: `url(https://lh3.googleusercontent.com/aida-public/AB6AXuBhmmhQTmhuxZrvz9-TRfvW04NrIEezNOCMslwbrA0RwH235xLXB_EsIW3S51VBl5t0YpTpOkXksE8VlXTFfhs9Rp6vhQSc8NaD70dVg0pyXuiEAuisBY98hrXL11Y7AcqRoxatuktedAI4XAkzay1M27UWsyF3DvYQxYGFLScTI-Mk74yxPwpDFKYwIceCuHqhC-wGXivPpglsbaj5Dq3Ead1gVzTadKPq8kTHAvF9QK5rmeqJlJzoYQOJbBB0cOW7aW0bVkfsmU0)`,
@@ -29,7 +33,7 @@ function goToBlog(){
 }
 </script>
 <template>
-<article class="article-card">
+<article class="article-card" @mouseenter="isHover = true" @mouseleave="isHover = false">
     <div class="image-wrapper">
         <div
             class="image"
@@ -38,7 +42,7 @@ function goToBlog(){
         <span class="tag">{{ article.category !== undefined ? article.category :'Sustainability' }}</span>
     </div>
     <div class="content">
-    <h3>
+    <h3 :style="titleStyle">
         {{ article.title !== undefined ? article.title :"The Rise of Sustainable Energy in Modern Architecture" }}
     </h3>
     <p>
@@ -94,6 +98,15 @@ function goToBlog(){
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 6px;
+  display: inline-block;
+  padding: .25rem .7rem;
+  border-radius: 45px;
+  font-size: .7rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  background:rgba(0, 0, 0, 0.384);
+  color: var(--text);
+  margin-bottom: .5rem;
 }
 
 /* Content */

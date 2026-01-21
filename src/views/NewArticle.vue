@@ -150,9 +150,8 @@ async function saveArticle(){
 
 .card {
   width: 100%;
-  border-radius: 14px;
   padding: 2rem 2.2rem;
-  border-radius: 45px;
+  border-radius: 1rem;
   background: var(--bg-tr2);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(12px);

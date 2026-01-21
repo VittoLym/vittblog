@@ -76,7 +76,7 @@ onUnmounted(() => clearInterval(interval))
         :key="article.id"
         :article="article"
       />
-      
+
     </TransitionGroup>
   </div>
 </template>
@@ -110,8 +110,8 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
-  max-height: 610px;
-  height: 610px;
+  max-height: 550px;
+  height: 550px;
   overflow: hidden;
 }
 .collection-inner > :nth-child(3n + 1) {

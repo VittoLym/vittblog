@@ -255,7 +255,7 @@ async function deleteArticle(id) {
 
 .load-more {
   padding: 12px 32px;
-  border-radius: 14px;
+  border-radius: 1rem;
   border: 1px solid #e5e7eb;
   background: var(--bg-tr2);
   font-size: 11px;
