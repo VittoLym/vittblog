@@ -284,12 +284,13 @@ onUnmounted(() => clearInterval(interval))
   .collection{
     width: 100vw;
     overflow: hidden;
+    margin-top: 5rem;
   }
   .collection-inner{
     gap: .3rem;
     overflow: hidden;
-    height: 970px;
-    max-height: 970px;
+    height: 1000px;
+    max-height: 860px;
     grid-template-columns: repeat(1, 1fr);
   }
   .layout {
@@ -302,7 +303,7 @@ onUnmounted(() => clearInterval(interval))
     max-width: 100vw;
     max-height: 300px;
     padding: 1rem .5rem;
-    border-radius: 25px;
+    border-radius: 1rem;
   }
   .hero::before {
     content: "";
@@ -314,7 +315,7 @@ onUnmounted(() => clearInterval(interval))
       rgba(0,0,0,.35),
       rgba(0,0,0,.1)
     );
-    border-radius: 25px;
+    border-radius: 1rem;
     z-index: 0;
   }
   .hero h1 {
@@ -345,7 +346,7 @@ onUnmounted(() => clearInterval(interval))
 
   .primary {
     text-align: center;
-    border-radius: 25px;
+    border-radius: 1rem;
     width: 130px;
     padding: 0;
   }

@@ -214,14 +214,14 @@ const heroBackground = computed(() => {
   }
   .actions {
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    align-items: end;
+    justify-content: end;
     width: 100%;
   }
 
   .primary {
     text-align: center;
-    border-radius: 25px;
+    border-radius: 1rem;
     width: 130px;
     padding: 0;
   }

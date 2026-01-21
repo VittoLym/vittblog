@@ -571,7 +571,9 @@ body {
     margin: 0;
     width: 100%;
   }
-
+  .main{
+    width: 100vw;
+  }
   .main_header {
     text-align: start;
     padding: 0 .5rem;
@@ -614,7 +616,7 @@ body {
   .new {
     text-align: center;
     padding: .7rem;
-    border-radius: 10px;
+    border-radius: 1rem;
     margin: 0;
   }
 }

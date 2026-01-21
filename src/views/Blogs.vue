@@ -346,7 +346,11 @@ async function deleteArticle(id) {
   }
   .container{
     padding: 2rem 0;
-    margin-top:2rem ;
+    margin-top:4rem ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .grid{
     grid-template-columns: repeat(1, 1fr);
@@ -366,6 +370,11 @@ async function deleteArticle(id) {
     height: 300px;
     width: 80vw;
     margin: 0;
+  }
+  .articles-section {
+    max-width: 80vw;
+    padding: 2rem 0;
+    font-family: system-ui, sans-serif;
   }
 }
 </style>
