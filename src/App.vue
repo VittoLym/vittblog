@@ -78,7 +78,7 @@ function mobileState(){
         <nav class="sections">
           <router-link to="/">Home</router-link>
           <router-link to="/blogs">Blogs</router-link>
-          <router-link to="/article/new">Crear</router-link>
+          <router-link to="/test">Crear</router-link>
         </nav>
         <aside class="buttons">
           <nav class="nav" >
@@ -134,6 +134,11 @@ function mobileState(){
         © {{ new Date().getFullYear() }} Vitt —
         <span>Personal blog</span>
       </p>
+      <div class="flex gap-4">
+            <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">rss_feed</span></a>
+            <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">alternate_email</span></a>
+            <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">database</span></a>
+      </div>
     </footer>
   </div>
 </template>
@@ -178,6 +183,11 @@ body {
   overflow: auto;
 }
 
+.main-layout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .slide-enter-active,
 .slide-leave-active {
   transition: transform .3s ease, opacity .3s ease;
@@ -212,7 +222,7 @@ body {
   align-items: center;
   width: 100%;
   padding: .5rem 1rem;
-  border-radius: 45px;
+  border-radius: 1rem;
   background: var(--bg-tr2);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -286,7 +296,7 @@ body {
   border-radius: 45px;
   cursor: pointer;
   transition: all .2s ease;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-tr2);
   width: 3.5vw;
   height: 50px;
   overflow: hidden;
@@ -433,17 +443,27 @@ body {
   overflow-x: hidden;
   display: flex;
   justify-content: center;
+  width: 80vw;
 }
 .footer {
   border-top: 1px solid #1f1f27;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 10vw;
   text-align: center;
   font-size: 0.85rem;
   color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  width: 100%;
 }
-
+.footer p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .footer span {
   opacity: 0.6;
+  margin-left: .2rem;
 }
 
 .logout {

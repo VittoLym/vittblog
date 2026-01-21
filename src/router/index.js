@@ -5,6 +5,7 @@ import Login from "../views/Login.vue"
 import NewArticle from "../views/NewArticle.vue"
 import Article from "../views/Article.vue"
 import Blogs from "../views/Blogs.vue"
+import Test from "../views/test.vue"
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
   {
     path:"/blogs",
     component:Blogs
+  },
+  {
+    path:"/test",
+    component:Test
   }
 ]
 const router = createRouter({

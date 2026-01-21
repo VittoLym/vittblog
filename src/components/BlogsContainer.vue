@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from "vue"
-import { isLogged } from "../stores/auth.js"
 const props = defineProps({article:Object})
 const heroBackground = computed(() => {
   if (!props.article?.image) return {
@@ -18,12 +17,13 @@ const heroBackground = computed(() => {
     <div class="Blog_Container">
         <section class="layout">
           <div class="hero" :style="heroBackground">
-              <span class="badge">Blog</span>
+            <article>
+              <span class="badge">{{ article.category }}</span>
               <h1 class="logo">{{ article?.title != undefined ? article.title : 'amongus' }}</h1>
-              <p>{{ article?.content.slice(0,130) }}...</p>
-              <div class="actions">
-                  <router-link :to="`/article/${article.id}`" class="primary link">Ver Blog</router-link>
-              </div>
+            </article>
+            <div class="actions">
+              <router-link :to="`/article/${article.id}`" class="primary link">Ver Blog</router-link>
+            </div>
           </div>
         </section>
     </div>
@@ -37,6 +37,7 @@ const heroBackground = computed(() => {
 }
 .layout{
     display: flex;
+
     padding:0;
     justify-content: center;
     align-items: center ;
@@ -56,16 +57,15 @@ const heroBackground = computed(() => {
 }
 .hero {
   width: 100%;
-  border-radius: 45px;
-  padding: 2rem 1.5rem;
+  border-radius: 1rem;
   backdrop-filter: blur(3px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   color: white;
-  height: 40vh;
+  height: 300px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: start;
+  align-items: end;
+  padding: 1rem;
 }
 .hero::before {
   content: "";
@@ -77,10 +77,16 @@ const heroBackground = computed(() => {
     rgba(0,0,0,.35),
     rgba(0,0,0,.1)
   );
-  border-radius: 45px;
+  border-radius: 1rem;
   z-index: 0;
 }
-
+.hero article{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
 .hero > * {
   position: relative;
   z-index: 1;

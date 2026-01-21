@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted,ref,computed,watch,onUnmounted } from "vue";
 import { useHead } from "@vueuse/head"
+import { isLogged, logout } from "../stores/auth"
 import SkeletonBlog from "../components/SkeletonBlog.vue";
 import BlogsContainer from "../components/BlogsContainer.vue"
 const articles = ref([])
@@ -52,7 +53,7 @@ onUnmounted(() => clearInterval(interval))
 <template>
   <div class="collection-skeleton"v-if="loading">
     <SkeletonBlog
-      v-for="n in 3"
+      v-for="n in 1"
       :key="n"
     />
   </div>
@@ -60,12 +61,10 @@ onUnmounted(() => clearInterval(interval))
     <TransitionGroup name="blog-fade" tag="div" class="collection-inner">
       <section class="layout">
         <div class="hero">
-            <span class="badge">Blog</span>
-            <h1 class="logo" >Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠<br><span><s>(Y Pensamientos Intrusivos)</s></span></h1>
-            <p>
-                Artículos sobre desarrollo web, proyectos personales
-                y aprendizajes del día a día como desarrollador.
-            </p>
+            <article>
+              <h1 class="logo" >Vitt<span>.</span>Blog | Desarrollo & Tecnología 💻🧠</h1>
+              <span><s>(Y Pensamientos Intrusivos)</s></span>
+            </article>
             <div class="actions">
                 <router-link to="/blogs" class="primary link">Ver Blogs</router-link>
                 <router-link class="primary link" to="/article/new" v-if="isLogged">+ Nuevo Blog</router-link>
@@ -77,6 +76,7 @@ onUnmounted(() => clearInterval(interval))
         :key="article.id"
         :article="article"
       />
+      
     </TransitionGroup>
   </div>
 </template>
@@ -110,8 +110,8 @@ onUnmounted(() => clearInterval(interval))
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   position: relative;
-  max-height: 580px;
-  height: 580px;
+  max-height: 610px;
+  height: 610px;
   overflow: hidden;
 }
 .collection-inner > :nth-child(3n + 1) {
@@ -157,16 +157,24 @@ onUnmounted(() => clearInterval(interval))
     font-weight: 700;
     letter-spacing: 0.5px;
     align-items: center;
-    width: 90%;
     margin:0;
 }
-.logo span {
+
+.hero article{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero article span {
     color: var(--negative);
     font-size:1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 .hero {
   width: 100%;
-  border-radius: 45px;
+  border-radius: 1rem;
   padding: 2rem 1.5rem;
   backdrop-filter: blur(3px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -174,8 +182,8 @@ onUnmounted(() => clearInterval(interval))
   height: 40vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
+  align-items: center;
+  justify-content: space-around;
   background-color: rgba(101, 34, 153, 0.219);
 }
 .hero::before {
@@ -188,10 +196,9 @@ onUnmounted(() => clearInterval(interval))
     rgba(0,0,0,.35),
     rgba(0,0,0,.1)
   );
-  border-radius: 45px;
+  border-radius: 1rem;
   z-index: 0;
 }
-
 .hero > * {
   position: relative;
   z-index: 1;
@@ -205,7 +212,7 @@ onUnmounted(() => clearInterval(interval))
   text-transform: uppercase;
   background: rgba(255,255,255,.06);
   color: var(--text);
-  margin-bottom: .8rem;
+  margin-bottom: .5rem;
 }
 
 .hero h2 {
@@ -280,9 +287,10 @@ onUnmounted(() => clearInterval(interval))
   }
   .collection-inner{
     gap: .3rem;
-    max-height: 650px;
-    height: 640px;
     overflow: hidden;
+    height: 970px;
+    max-height: 970px;
+    grid-template-columns: repeat(1, 1fr);
   }
   .layout {
     padding: 1rem .5rem;
