@@ -443,7 +443,7 @@ body {
   overflow-x: hidden;
   display: flex;
   justify-content: center;
-  width: 80vw;
+  min-width: 80vw;
 }
 .footer {
   border-top: 1px solid #1f1f27;
