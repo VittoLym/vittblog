@@ -25,14 +25,27 @@
       <article class="max-w-container-max mx-40 px-gutter -mt-20 relative z-20">
         <div class=" article-container bg-surface-container-lowest p-6 md:p-12 border border-outline-variant rounded-xl shadow-sm">
           <!-- Meta Info -->
-          <div class="flex items-center gap-2 mb-6 animate-fade-slide-up">
-            <span class="bg-primary px-3 py-1 text-green font-mono-label-xs text-mono-label-xs uppercase rounded-[4px]">
-              {{ article.category }}
-            </span>
-            <span class="text-on-surface-variant font-mono-label-sm text-mono-label-sm uppercase">
-              {{ article.readTime }} MIN READ
-            </span>
-          </div>
+          <div class="flex flex-wrap items-center gap-2.5 mb-6 animate-fade-slide-up">
+          <!-- Categoría -->
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[10px] font-mono font-bold uppercase tracking-widest rounded-full 
+                      bg-gradient-to-r from-primary to-primary/80 
+                      shadow-md shadow-primary/20 
+                      border border-white/10
+                      transition-all hover:scale-105 hover:shadow-primary/30">
+            <span class="material-symbols-outlined text-[14px]">label</span>
+            {{ article.category }}
+          </span>
+          
+          <!-- Tiempo de lectura -->
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[10px] font-mono font-bold uppercase tracking-widest rounded-full 
+                      bg-surface-container-high/80 text-on-surface-variant 
+                      border border-outline-variant/30 
+                      backdrop-blur-sm
+                      transition-all hover:scale-105 hover:border-primary/30">
+            <span class="material-symbols-outlined text-[14px]">timer</span>
+            {{ article.readTime }} MIN READ
+          </span>
+        </div>
 
           <h1 class="font-headline-xl text-headline-xl text-on-surface mb-8 leading-tight max-w-4xl animate-fade-slide-up delay-100">
             {{ article.title }}
